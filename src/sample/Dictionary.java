@@ -17,7 +17,7 @@ public class Dictionary {
         this.name = Name;
         this.path = Path;
         Words = new ArrayList<>();
-        data = new HashMap<>()
+        data = new HashMap<>();
     }
 
     public String getName() {
