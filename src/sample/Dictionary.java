@@ -30,10 +30,11 @@ public class Dictionary {
 
     /**
      * Đọc file
-     * trả về arraylist Words
      * Words chứa các từ của từ điển, không chứa nghĩa
+     * data chưa cả từ và nghĩa
+     * readfile thêm dữ liệu trong txt vào data và words
      */
-    public ArrayList<String> readfile() {
+    public void readfile() {
         String line, word, def;
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "UTF8");
@@ -58,11 +59,17 @@ public class Dictionary {
 
         } catch (IOException e) {
             e.printStackTrace();
-
         }
-        return Words;
     }
-
+    public int binarySearch(String w, ArrayList<String> k){
+        if (k.get(0).compareTo(w)>=0) return 0;
+        int d = 0, c = k.size();
+        while (d<c-1){
+            int g = (d+c)/2;
+            if (k.get(g).compareTo(w)<0) d=g;else c=g;
+        }
+        return c;
+    }
     /**
      * Thêm từ vào Dictionary(data và Words)
      */
