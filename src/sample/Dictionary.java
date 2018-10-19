@@ -7,15 +7,17 @@ import java.util.HashMap;
 public class Dictionary {
     String name; // từ điển anh việt hay việt anh ?
     String path; // Đường dẫn đến từ điển
-    HashMap<String,String> data;
+    HashMap<String, String> data;
     ArrayList<String> Words;
+
     /**
      * Getter, setter
      * Event: chọn từ điển nào thì khởi tạo lại Dictionary mới
      */
-    public void Dictionary(String Name, String Path) {
+    public void Dictionary(String Name) {
         this.name = Name;
-        this.path = Path;
+        if (name == "E_V") this.path = "src\\Data\\E_V.txt";
+        else this.path = "src\\Data\\V_E.txt";
         Words = new ArrayList<>();
         data = new HashMap<>();
     }
@@ -61,19 +63,83 @@ public class Dictionary {
             e.printStackTrace();
         }
     }
-    public int binarySearch(String w, ArrayList<String> k){
-        if (k.get(0).compareTo(w)>=0) return 0;
-        int d = 0, c = k.size();
-        while (d<c-1){
-            int g = (d+c)/2;
-            if (k.get(g).compareTo(w)<0) d=g;else c=g;
+
+    /**
+     * Tìm từ
+     * Dựa trên binarySearch của thầy
+     * @param w : từ cần tìm
+     * @param words : danh sách từ
+     * @return vị trí của từ cần tìm hoặc vị trí của từ cần thêm vào ( theo thứ từ từ điển)
+     */
+    public int SearchWord(String w, ArrayList<String> words) {
+        if (words.get(0).compareTo(w) >= 0) return 0;       // So sánh bằng compareTo - từ điển
+        int start = 0, end = words.size();
+        while (start < end - 1) {
+            int temp = (start + end) / 2;
+            if (words.get(temp).compareTo(w) < 0) start = temp;       // So sánh bằng compareTo - từ điển
+            else end = temp;
         }
-        return c;
+        return end;
     }
+
     /**
      * Thêm từ vào Dictionary(data và Words)
      */
-    public void update(){
+    public void addWord(String newWord, String newDefinition) {
+        newWord = newWord.toLowerCase();
+        data.put(newWord, newDefinition);
+        int position = SearchWord(newWord, Words);
+        Words.add(position, newWord);
+    }
+
+    /**
+     * Thêm từ vào trong file
+     */
+    public void updateFile() {
+        OutputStreamWriter outputStreamWriter = null;
+        BufferedWriter writer = null;
+        try {
+            outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
+            writer = new BufferedWriter(outputStreamWriter);
+            for (String word : Words) {
+                writer.write(word);
+                String def = data.get(word);
+                if (def != null) {
+                    writer.write(data.get(word));
+                }
+                writer.newLine();
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Xóa từ
+     * Tìm từ bằng binary search (hàm SearchWord) và xóa
+     * Nếu từ w có trong từ điển thì xóa
+     * @param w: từ cần xóa
+     */
+    public void removeWord(String w){
+            int position = SearchWord(w,Words);
+            if (position>=0 && position<=Words.size()-1){
+                Words.remove(position);
+                data.remove(w);
+            }
+    }
+
+    /**
+     * Hàm sửa từ
+     * @param w: từ cần sửa
+     * @param modifiedWord: từ đã được sửa
+     * @param modifiedDef: nghĩa đã được sửa
+     */
+
+    public void modifyWord(String w, String modifiedWord, String modifiedDef){
 
     }
+
 }
