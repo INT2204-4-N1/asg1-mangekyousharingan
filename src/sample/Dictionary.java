@@ -137,9 +137,18 @@ public class Dictionary {
      * @param modifiedWord: từ đã được sửa
      * @param modifiedDef: nghĩa đã được sửa
      */
-
     public void modifyWord(String w, String modifiedWord, String modifiedDef){
-
+        if (modifiedWord == null)               // không sửa từ
+            data.replace(w,modifiedDef);
+        else if (modifiedDef == null) {         // không thêm nghía
+            String newDef = new String();
+            removeWord(w);                      // xóa key - value trong data và từ w trong Words
+            data.replace(modifiedWord,newDef);  // thêm từ mới
+        }
+        else{                                   // cả modifiedWord và modifiedDef không bị null
+            removeWord(w);
+            addWord(modifiedWord,modifiedDef);
+        }
     }
 
 }
