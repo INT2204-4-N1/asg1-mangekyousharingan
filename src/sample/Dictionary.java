@@ -5,21 +5,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Dictionary {
-    String name; // từ điển anh việt hay việt anh ?
-    String path; // Đường dẫn đến từ điển
-    HashMap<String, String> data;
-    ArrayList<String> Words;
+    private  String name; // từ điển anh việt hay việt anh ?
+    private  String path; // Đường dẫn đến từ điển
+    private  HashMap<String, String> data;
+    private  ArrayList<String> Words;
 
     /**
      * Getter, setter
      * Event: chọn từ điển nào thì khởi tạo lại Dictionary mới
      */
-    public void Dictionary(String Name) {
+    public Dictionary(String Name) {
         this.name = Name;
-        if (name == "E_V") this.path = "src\\Data\\E_V.txt";
-        else this.path = "src\\Data\\V_E.txt";
+        if (this.name == "E_V") this.path = "src\\sample\\E_V.txt";
+        else this.path = "src\\sample\\V_E.txt";
         Words = new ArrayList<>();
         data = new HashMap<>();
+    }
+
+    public ArrayList<String> getWords() {
+        return Words;
+    }
+
+    public void setWords(ArrayList<String> words) {
+        Words = words;
+    }
+
+    public HashMap<String, String> getData() {
+        return data;
+    }
+
+    public void setData(HashMap<String, String> data) {
+        this.data = data;
     }
 
     public String getName() {
@@ -36,7 +52,7 @@ public class Dictionary {
      * data chưa cả từ và nghĩa
      * readfile thêm dữ liệu trong txt vào data và words
      */
-    public void readfile() {
+    public  void readfile() {
         String line, word, def;
         try {
             InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "UTF8");
