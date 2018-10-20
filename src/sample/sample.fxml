@@ -13,8 +13,8 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Từ điển">
                     <items>
-                        <RadioMenuItem mnemonicParsing="false" text="Anh - Việt" />
-                        <RadioMenuItem mnemonicParsing="false" text="Việt - Anh" />
+                        <RadioMenuItem fx:id="initAV" mnemonicParsing="false" onAction="#onClickAV" text="Anh - Việt" />
+                        <RadioMenuItem fx:id="initVA" mnemonicParsing="false" onAction="#onClickVA" text="Việt - Anh" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -24,7 +24,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Giúp đỡ">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Tác giả" />
+                        <MenuItem mnemonicParsing="false" onAction="#onClickTacGia" text="Tác giả" />
                     </items>
                 </Menu>
             </menus>
@@ -48,8 +48,11 @@
                                 <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <TextField fx:id="searchText" prefHeight="30.0" prefWidth="116.0" promptText="Nhập từ cần tra" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onClinkSearch" prefHeight="30.0" prefWidth="53.0" style="-fx-background-color: royalblue;" text="Tra" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                <TextField fx:id="searchText" prefHeight="30.0" prefWidth="116.0" promptText="Nhập từ cần tra" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextField>
+                                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onClickSearch" prefHeight="30.0" prefWidth="53.0" style="-fx-background-color: royalblue;" text="Tra" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                             </children>
                         </GridPane>
                     </children>
@@ -81,12 +84,12 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Label fx:id="currWord" prefHeight="20.0" prefWidth="44.0" text="Label" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="currWordLabel" prefHeight="20.0" prefWidth="44.0" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Label fx:id="currDict" text="Label" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="currDictLabel" text="Anh - Việt" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <font>
                                 <Font size="14.0" />
                             </font>
