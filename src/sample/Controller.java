@@ -115,6 +115,60 @@ public class Controller implements Initializable {
         }
     }
 
+    public void updateDict(String path) {
+        if (path == "E_V") {
+            path = "src\\sample\\E_V.txt";
+        }
+        else{
+            path = "src\\sample\\V_E.txt";
+        }
+
+        // Ghi file từ điển Anh - Việt
+        if (path.equalsIgnoreCase("src\\sample\\E_V.txt")){
+            try {
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
+                BufferedWriter writer = new BufferedWriter(outputStreamWriter);
+                for (String word : wordTargetVE ) {
+                    writer.write(word);
+                    String def = dataEV.get(word);
+                    if (def != null) {
+                        writer.write(dataEV.get(word));
+                    }
+                    writer.newLine();
+                }
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Collections.sort(wordTargetEV);
+        }
+        // Ghi file từ điển Việt - Anh
+        if (path.equalsIgnoreCase("src\\sample\\E_V.txt")){
+            try {
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
+                BufferedWriter writer = new BufferedWriter(outputStreamWriter);
+                for (String word : wordTargetVE ) {
+                    writer.write(word);
+                    String def = dataVE.get(word);
+                    if (def != null) {
+                        writer.write(dataVE.get(word));
+                    }
+                    writer.newLine();
+                }
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Collections.sort(wordTargetVE);
+        }
+
+    }
     public void onClickAV(){
         currData = dataEV;
         currWordTarget = wordTargetEV;
