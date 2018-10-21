@@ -217,9 +217,9 @@ public class Controller implements Initializable {
         alert.setHeaderText("Cảm ơn bạn đã sử dụng phần mềm!");
         alert.setContentText("MangekyouSharingan Team (From Uchiha)\n"+
                 "Member:\n"+
-                "\t1. Cao Quý Đăng\tMSSV: 17020680\n"+
-                "\t2. Nguyễn Xuân Hiển\tMSSV: \n"+
-                "Liên hệ: athenaQK@gmail.com");
+                "\t1. Cao Quý Đăng\t\tMSSV: 17020680\n"+
+                "\t2. Nguyễn Xuân Hiển\tMSSV: 17020730\n"+
+                "\tLiên hệ: athenaQK@gmail.com");
         alert.show();
     }
 
