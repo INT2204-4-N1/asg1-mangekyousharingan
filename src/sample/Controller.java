@@ -34,7 +34,7 @@ public class Controller implements Initializable {
     private WebView webView;
     private WebEngine webEngine;
 
-    private boolean AnhDict = true;
+    public boolean AnhDict = true;
     public static Map<String,String> dataEV = new HashMap<>();
     public static ArrayList<String> wordTargetEV = new ArrayList<>();
     public static Map<String,String> dataVE = new HashMap<>();
@@ -128,7 +128,7 @@ public class Controller implements Initializable {
             try {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
                 BufferedWriter writer = new BufferedWriter(outputStreamWriter);
-                for (String word : wordTargetVE ) {
+                for (String word : wordTargetEV ) {
                     writer.write(word);
                     String def = dataEV.get(word);
                     if (def != null) {
@@ -146,7 +146,7 @@ public class Controller implements Initializable {
             Collections.sort(wordTargetEV);
         }
         // Ghi file từ điển Việt - Anh
-        if (path.equalsIgnoreCase("src\\sample\\E_V.txt")){
+        if (path.equalsIgnoreCase("src\\sample\\V_E.txt")){
             try {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
                 BufferedWriter writer = new BufferedWriter(outputStreamWriter);
@@ -234,6 +234,16 @@ public class Controller implements Initializable {
         return end;
     }
 
+    public void onClickRemove(){
+        String word = searchText.getText();
+        removeWord(word);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText("Bạn đã xóa bỏ thành công");
+        alert.setContentText("Từ được xóa bỏ là "+word);
+        alert.show();
+    }
+
     public void translate (String curWord){
         try {
             String wordLabel = curWord;
@@ -275,6 +285,23 @@ public class Controller implements Initializable {
                 "\t2. Nguyễn Xuân Hiển\tMSSV: 17020730\n"+
                 "\tLiên hệ: athenaQK@gmail.com");
         alert.show();
+    }
+    public void removeWord(String word){
+        int position = searchWord(word,currWordTarget);
+        if (position>=0 && position<=currWordTarget.size()-1){
+            currWordTarget.remove(position);
+            currData.remove(word);
+        }
+        if (AnhDict == true){
+            wordTargetEV = currWordTarget;
+            dataEV = currData;
+            updateDict("E_V");
+        }
+        else{
+            wordTargetVE = currWordTarget;
+            dataVE = currData;
+            updateDict("V_E");
+        }
     }
 
 }

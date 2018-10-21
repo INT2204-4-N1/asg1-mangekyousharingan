@@ -71,8 +71,11 @@
             <top>
                 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="360.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="55.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="305.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="4.0" prefWidth="53.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="164.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="64.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="0.0" prefWidth="7.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="72.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="20.0" minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
@@ -90,7 +93,7 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Label fx:id="currWordLabel" prefHeight="20.0" prefWidth="262.0" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="currWordLabel" prefHeight="20.0" prefWidth="125.0" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -100,6 +103,16 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickRemove" prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: royalblue;" text="Xóa từ" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: royalblue;" text="Thêm từ" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
                     </children>
                 </GridPane>
             </top>
