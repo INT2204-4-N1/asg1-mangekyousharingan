@@ -84,7 +84,7 @@ public class Controller implements Initializable {
             Collections.sort(wordTargetEV);
         }
 
-        // Đọc file từ didenr Việt - Anh
+        // Đọc file từ điển Việt - Anh
         if (path.equalsIgnoreCase("src\\sample\\V_E.txt")){
             String line,word,def;
             try {
