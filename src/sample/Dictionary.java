@@ -49,7 +49,7 @@ public class Dictionary {
     /**
      * Đọc file
      * Words chứa các từ của từ điển, không chứa nghĩa
-     * data chưa cả từ và nghĩa
+     * data chứa cả từ và nghĩa
      * readfile thêm dữ liệu trong txt vào data và words
      */
     public  void readfile() {
