@@ -21,6 +21,8 @@ public class Controller implements Initializable {
     @FXML
     private RadioMenuItem initVA;
     @FXML
+    private ToggleGroup tg_gr;
+    @FXML
     private Button searchButton;
     @FXML
     private Label currDictLabel;
@@ -33,10 +35,10 @@ public class Controller implements Initializable {
     private WebEngine webEngine;
 
     private boolean AnhDict = true;
-    public static Map<String,String> dataEV;
-    public static ArrayList<String> wordTargetEV;
-    public static Map<String,String> dataVE;
-    public static ArrayList<String> wordTargetVE;
+    public static Map<String,String> dataEV = new HashMap<>();
+    public static ArrayList<String> wordTargetEV = new ArrayList<>();
+    public static Map<String,String> dataVE = new HashMap<>();
+    public static ArrayList<String> wordTargetVE = new ArrayList<>();
     public static Map<String,String> currData = new HashMap<>();
     public static ArrayList<String> currWordTarget = new ArrayList<>();
 
@@ -45,12 +47,6 @@ public class Controller implements Initializable {
      * @param path - dữ liệu truyền vào là "A_V"(Anh - Việt) hoặc "V_A"(Việt - Anh)
      */
     public  static  void loadDict(String path){
-        dataEV = new HashMap<>();
-        wordTargetEV = new ArrayList<>();
-        dataVE = new HashMap<>();
-        wordTargetVE = new ArrayList<>();
-        //String line, word, def;
-
         if (path == "E_V") {
             path = "src\\sample\\E_V.txt";
         }
@@ -58,6 +54,7 @@ public class Controller implements Initializable {
             path = "src\\sample\\V_E.txt";
         }
 
+        // Đọc file từ điển Anh - Việt
         if (path.equalsIgnoreCase("src\\sample\\E_V.txt")){
             String line, word, def;
             try {
@@ -86,6 +83,8 @@ public class Controller implements Initializable {
             }
             Collections.sort(wordTargetEV);
         }
+
+        // Đọc file từ didenr Việt - Anh
         if (path.equalsIgnoreCase("src\\sample\\V_E.txt")){
             String line,word,def;
             try {
@@ -114,34 +113,6 @@ public class Controller implements Initializable {
             }
             Collections.sort(wordTargetVE);
         }
-
-        /*
-        try {
-           InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "UTF8");
-            BufferedReader reader = new BufferedReader(inputStreamReader);
-            while ((line = reader.readLine()) != null) {
-                int index = line.indexOf("<html>");
-                int index2 = line.indexOf("<ul>");
-                if (index2 != -1 && index > index2) {
-                    index = index2;
-                }
-                if (index != -1) {
-                   word = line.substring(0, index);
-                    word = word.trim();             // word là từ trên dòng thứ index
-                    def = line.substring(index);    // Phần nghĩa (từ <html> đến <ul><html>)
-                    dataEV.put(word, def);            // Thêm từ và nghĩa vào data
-                    wordTargetEV.add(word);                // thêm từ vào Words
-                }
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Collections.sort(wordTargetEV);
-        */
     }
 
     public void onClickAV(){
@@ -162,48 +133,33 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         loadDict("V_E");
         loadDict("E_V");
-    //    currData = dataEV;
-    //    currWordTarget = wordTargetEV;
-    //    currDictLabel.setText("Anh - Việt");
+        currDictLabel.setText("Anh - Việt");
         onClickAV();
+        initAV.setUserData("av");
+        initVA.setUserData("va");
         initAV.setSelected(true);
-    //    loadDict("V_E");
-    //    dictEV.readfile();
-    //    dictVE.readfile();
-    //    autoCompletionBinding = TextFields.bindAutoCompletion(searchText,wordTargetEV);
-    //    initAV.setUserData("av");
-    //    initVA.setUserData("va");
-    //    initAV.setSelected(true);
+        autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataEV.keySet());
 
-
-    //    searchButton.setDisable(true);
-
-    //    tog_gr.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-    //        @Override
-    //        public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-    //            if (tog_gr.getSelectedToggle()!=null){
-    //                if (tog_gr.selectToggle().)
-    //            }
-    //        }
-    //    });
-    }
-
-    public int searchWord1(String curWord, ArrayList<String> words) {
-        if (words.get(0).compareTo(curWord)>=0){
-            return 0;
-        }
-        int left = 0;
-        int right = words.size();
-        while (left<right-1){
-            int mid = left +(right - left)/2;
-            if (words.get(mid).compareTo(curWord)<0){
-                left=mid;
+        // Code menu trong Từ điển
+        tg_gr.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if (tg_gr.getSelectedToggle()!=null){
+                    if (tg_gr.getSelectedToggle().getUserData().toString().compareTo("av") == 0){
+                        AnhDict = true;
+                        onClickAV();
+                        autoCompletionBinding.dispose();
+                        autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataEV.keySet());
+                    }
+                    else {
+                        AnhDict = false;
+                        onClickVA();
+                        autoCompletionBinding.dispose();
+                        autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataVE.keySet());
+                    }
+                }
             }
-            else{
-                right=mid;
-            }
-        }
-        return right;
+        });
     }
 
     public int searchWord(String w, ArrayList<String> words) {
@@ -226,12 +182,16 @@ public class Controller implements Initializable {
 
     public void translate (String curWord){
         try {
-            currWordLabel.setText(curWord);
+            String wordLabel = curWord;
+            wordLabel = wordLabel.toUpperCase();
+            //System.out.println(wordLabel);                // test
+            //System.out.println(wordTargetVE.get(0));      // test
+            currWordLabel.setText(wordLabel);
             int i = searchWord(curWord, currWordTarget);
-            System.out.println(wordTargetEV.get(1000));
-            System.out.println(i);
+            //System.out.println(wordTargetEV.get(0));        // test
+            //System.out.println(i);                        // test
             String curMean = (currData.get(curWord));
-            System.out.println(curMean);
+            //System.out.println(curMean);                  // test
             webEngine = webView.getEngine();
             webEngine.loadContent(curMean);
         }catch (Exception e){
@@ -242,9 +202,9 @@ public class Controller implements Initializable {
     public void onClickSearch(){
         try {
             String word = searchText.getText();
-            word.trim();
-            word = word.toLowerCase();
-            System.out.println(word);
+            //word.trim();
+            //word = word.toLowerCase();
+            //System.out.println(word);                     // test
             translate(word);
         }catch (Exception e){
             e.printStackTrace();

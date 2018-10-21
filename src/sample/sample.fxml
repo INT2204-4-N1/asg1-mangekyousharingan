@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.web.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
@@ -13,13 +14,11 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Từ điển">
                     <items>
-                        <RadioMenuItem fx:id="initAV" mnemonicParsing="false" onAction="#onClickAV" text="Anh - Việt" />
-                        <RadioMenuItem fx:id="initVA" mnemonicParsing="false" onAction="#onClickVA" text="Việt - Anh" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <RadioMenuItem fx:id="initAV" mnemonicParsing="false" onAction="#onClickAV" text="Anh - Việt">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tg_gr" />
+                     </toggleGroup></RadioMenuItem>
+                        <RadioMenuItem fx:id="initVA" mnemonicParsing="false" onAction="#onClickVA" text="Việt - Anh" toggleGroup="$tg_gr" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Giúp đỡ">
@@ -58,6 +57,13 @@
                     </children>
                 </HBox>
             </top>
+         <center>
+            <ImageView fitHeight="183.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@githubblue.png" />
+               </image>
+            </ImageView>
+         </center>
         </BorderPane>
     </left>
     <center>
@@ -84,7 +90,7 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Label fx:id="currWordLabel" prefHeight="20.0" prefWidth="44.0" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="currWordLabel" prefHeight="20.0" prefWidth="262.0" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <font>
                                 <Font size="14.0" />
                             </font>
