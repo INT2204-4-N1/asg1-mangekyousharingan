@@ -293,7 +293,7 @@ public class Controller implements Initializable {
             currWordLabel.setText(wordLabel);
             int i = searchWord(curWord, currWordTarget);
             //System.out.println(wordTargetEV.get(0));        // test
-            //System.out.println(i);                        // test
+            System.out.println(i);                        // test
             String curMean = (currData.get(curWord));
             //System.out.println(curMean);                  // test
             webEngine = webView.getEngine();
