@@ -20,7 +20,7 @@ public class Controller1 {
     public void onClickThem(){
         Controller action = new Controller();
         String str1 = wordText.getText();
-        System.out.println(Controller.currWordTarget.size());
+        //System.out.println(Controller.currWordTarget.size());
         String str2 = typeText.getText();
         String str3 = meanText.getText();
         //String mean = "<html></i><br/><ul><li><b><i> "+str2+"</i></b><ul><li><font color='#cc0000'><b> "+str3;

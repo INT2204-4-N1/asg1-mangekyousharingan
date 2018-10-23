@@ -64,14 +64,14 @@ public class Controller implements Initializable {
      */
     public  static  void loadDict(String path){
         if (path == "E_V") {
-            path = "src\\sample\\E_V.txt";
+            path = "E_V.txt";
         }
         else{
-            path = "src\\sample\\V_E.txt";
+            path = "V_E.txt";
         }
 
         // Đọc file từ điển Anh - Việt
-        if (path.equalsIgnoreCase("src\\sample\\E_V.txt")){
+        if (path.equalsIgnoreCase("E_V.txt")){
             String line, word, def;
             try {
                 InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "UTF8");
@@ -101,7 +101,7 @@ public class Controller implements Initializable {
         }
 
         // Đọc file từ điển Việt - Anh
-        if (path.equalsIgnoreCase("src\\sample\\V_E.txt")){
+        if (path.equalsIgnoreCase("V_E.txt")){
             String line,word,def;
             try {
                 InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "UTF8");
@@ -137,14 +137,14 @@ public class Controller implements Initializable {
      */
     public void updateDict(String path) {
         if (path == "E_V") {
-            path = "src\\sample\\E_V.txt";
+            path = "E_V.txt";
         }
         else{
-            path = "src\\sample\\V_E.txt";
+            path = "V_E.txt";
         }
 
         // Ghi file từ điển Anh - Việt
-        if (path.equalsIgnoreCase("src\\sample\\E_V.txt")){
+        if (path.equalsIgnoreCase("E_V.txt")){
             try {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
                 BufferedWriter writer = new BufferedWriter(outputStreamWriter);
@@ -166,7 +166,7 @@ public class Controller implements Initializable {
             Collections.sort(wordTargetEV);
         }
         // Ghi file từ điển Việt - Anh
-        if (path.equalsIgnoreCase("src\\sample\\V_E.txt")){
+        if (path.equalsIgnoreCase("V_E.txt")){
             try {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(path), "UTF8");
                 BufferedWriter writer = new BufferedWriter(outputStreamWriter);
