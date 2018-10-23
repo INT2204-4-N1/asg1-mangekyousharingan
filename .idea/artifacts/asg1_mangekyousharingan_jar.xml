@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="asg1-mangekyousharingan:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/asg1_mangekyousharingan_jar</output-path>
+    <root id="archive" name="asg1-mangekyousharingan.jar">
+      <element id="module-output" name="asg1-mangekyousharingan" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/controlsfx-8.40.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/controlsfx-samples-8.40.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/fxsampler-1.0.10.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

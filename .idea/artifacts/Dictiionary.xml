@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Dictiionary">
-    <output-path>$PROJECT_DIR$/out/artifacts/Dictiionary</output-path>
-    <root id="archive" name="Dictiionary.jar">
-      <element id="module-output" name="asg1-mangekyousharingan" />
-      <element id="library" level="project" name="org.controlsfx:controlsfx-samples:8.40.14" />
-    </root>
-  </artifact>
-</component>
