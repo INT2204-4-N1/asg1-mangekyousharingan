@@ -18,12 +18,13 @@ public class Controller1 {
     public void onClickThem(){
         Controller action = new Controller();
         String str1 = wordText.getText();
-        System.out.println(str1);
+        //System.out.println(str1);
         String str2 = typeText.getText();
         String str3 = meanText.getText();
         //String mean = "<html></i><br/><ul><li><b><i> "+str2+"</i></b><ul><li><font color='#cc0000'><b> "+str3;
         String mean = "<html><ul><li><b><i> "+str2+"</i></b><ul><li><font color='#cc0000'><b> "+str3;
-        Controller.currWordTarget.add(str1);
+        int index = action.searchWord(str1,Controller.currWordTarget);
+        Controller.currWordTarget.add(index,str1);
         Controller.currData.put(str1,mean);
         if (Controller.AnhDict == true){
             Controller.dataEV = Controller.currData;
@@ -44,6 +45,7 @@ public class Controller1 {
         alert.setHeaderText("Bạn đã thêm thành công!");
         alert.setContentText("Bạn đã thêm thành công từ "+str1+" vào trong từ điển.");
         alert.show();
+        Controller.stageAdd.close();
     }
 
     /**

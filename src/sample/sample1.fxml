@@ -7,13 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="239.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller1">
+<AnchorPane prefHeight="255.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller1">
    <children>
-      <BorderPane prefHeight="239.0" prefWidth="325.0">
+      <BorderPane prefHeight="255.0" prefWidth="340.0">
          <top>
-            <VBox prefHeight="30.0" prefWidth="325.0" style="-fx-background-color: royalblue;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="30.0" prefWidth="333.0" style="-fx-background-color: royalblue;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <Pane prefHeight="30.0" prefWidth="343.0">
                      <children>
                         <Label layoutX="131.0" layoutY="6.0" text="THÊM TỪ" textFill="WHITE">
                            <font>
@@ -26,20 +26,20 @@
             </VBox>
          </top>
          <center>
-            <GridPane BorderPane.alignment="CENTER">
+            <GridPane prefHeight="165.0" prefWidth="340.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="47.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="10.0" prefWidth="54.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0" prefWidth="61.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="45.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="10.0" prefWidth="48.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="189.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="10.0" prefWidth="55.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="23.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="31.0" minHeight="9.0" prefHeight="11.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.0" minHeight="6.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="20.0" prefWidth="22.0" text="Từ" textFill="ROYALBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -59,15 +59,15 @@
                   </Label>
                   <TextField fx:id="wordText" promptText="Nhập từ cần thêm" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <TextField fx:id="typeText" promptText="Nhập loại của từ cần thêm" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField fx:id="meanText" promptText="Nhập nghĩa của từ" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <TextField fx:id="meanText" prefHeight="25.0" prefWidth="172.0" promptText="Nhập nghĩa của từ" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </center>
          <bottom>
-            <Pane prefHeight="50.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="55.0" prefWidth="340.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="102.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickThem" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #4169e1;" text="Thêm" textFill="WHITE" />
-                  <Button layoutX="215.0" layoutY="13.0" mnemonicParsing="false" onAction="#onClickHuy" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #4169e1;" text="Hủy" textFill="WHITE" />
+                  <Button layoutX="93.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClickThem" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4169e1;" text="Thêm" textFill="WHITE" />
+                  <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClickHuy" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4169e1;" text="Hủy" textFill="WHITE" />
                </children>
             </Pane>
          </bottom>

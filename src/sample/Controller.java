@@ -363,6 +363,7 @@ public class Controller implements Initializable {
 
     /**
      * Hàm thực hiện chức năng thêm từ
+     * Nếu từ được thêm đã tồn tại trong từ điển thì sẽ thực hiện chức năng thay thế hay sửa từ
      */
     public void onClickAdd(){
         try{
