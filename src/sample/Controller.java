@@ -131,6 +131,10 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Hàm ghi dữ liệu vào file
+     * @param path - "E_V" hoặc "V_E" (tương ứng file từ điển Anh-Việt hoặc Việt-Anh)
+     */
     public void updateDict(String path) {
         if (path == "E_V") {
             path = "src\\sample\\E_V.txt";
@@ -185,12 +189,19 @@ public class Controller implements Initializable {
         }
 
     }
+
+    /**
+     * Hàm bắt sự kiên menu Từ điển -> Từ điển Anh Việt
+     */
     public void onClickAV(){
         currData = dataEV;
         currWordTarget = wordTargetEV;
         currDictLabel.setText("Anh - Việt");
     }
 
+    /**
+     * Hàm bắt sự kiên menu Từ điển -> Từ điển Việt Anh
+     */
     public void onClickVA(){
         currData = dataVE;
         currWordTarget = wordTargetVE;
@@ -232,6 +243,12 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * Hàm tìm kiếm vị trí của từ trong ArrayList sau khi đã đọc file
+     * @param w - từ cần tìm kiếm (nhận String của searchText)
+     * @param words - ArrayList bao gồm các từ sauu khi đọc file
+     * @return - trả về vị trí của từ nằm trong ArrayList truyền vào
+     */
     public int searchWord(String w, ArrayList<String> words) {
         if (words.get(0).compareTo(w) >= 0) {           // So sánh bằng compareTo - từ điển
             return 0;
@@ -250,6 +267,9 @@ public class Controller implements Initializable {
         return end;
     }
 
+    /**
+     * Hàm bắt sự kiện xóa từ
+     */
     public void onClickRemove(){
         String word = searchText.getText();
         removeWord(word);
@@ -260,6 +280,10 @@ public class Controller implements Initializable {
         alert.show();
     }
 
+    /**
+     * Hàm dịch nghĩa của từ truền vào
+     * @param curWord - từ cần dịch (nhận String từ searchText)
+     */
     public void translate (String curWord){
         try {
             String wordLabel = curWord;
@@ -279,6 +303,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Hàm bắt sự kiện tìm kiếm từ hay Button "Tra"
+     */
     public void onClickSearch(){
         try {
             String word = searchText.getText();
@@ -291,6 +318,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Hàmb bắt sự kiện cho menu Tác giả - > Tác giả
+     */
     public void onClickTacGia(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Tác giả");
@@ -302,6 +332,11 @@ public class Controller implements Initializable {
                 "\tLiên hệ: athenaQK@gmail.com");
         alert.show();
     }
+
+    /**
+     * Hàm thực hiện chức năng xóa từ truyền vào
+     * @param word - biến string nhận từ của searchText
+     */
     public void removeWord(String word){
         int position = searchWord(word,currWordTarget);
         if (position>=0 && position<=currWordTarget.size()-1){
@@ -325,6 +360,10 @@ public class Controller implements Initializable {
             autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataVE.keySet());
         }
     }
+
+    /**
+     * Hàm thực hiện chức năng thêm từ
+     */
     public void onClickAdd(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample1.fxml"));
@@ -332,6 +371,38 @@ public class Controller implements Initializable {
             stageAdd = new Stage();
             stageAdd.setScene(new Scene(root1));
             stageAdd.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Hàm bắt sự kiện cho mune API - > GoogleAPI
+     */
+    public void onClickGoogleAPI(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GoogleAPI.fxml"));
+            Parent root2 = (Parent) fxmlLoader.load();
+            stageGoogle = new Stage();
+            stageGoogle.setScene(new Scene(root2));
+            stageGoogle.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Hàm bắt sự kiện cho menu API - > Từ điển Cambridge
+     */
+    public void onClickCambridge(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Cambridge.fxml"));
+            Parent root3 = (Parent) fxmlLoader.load();
+            stageCombridge = new Stage();
+            stageCombridge.setScene(new Scene(root3));
+            stageCombridge.show();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -350,31 +421,5 @@ public class Controller implements Initializable {
         }
     }
     */
-
-    public void onClickGoogleAPI(){
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GoogleAPI.fxml"));
-            Parent root2 = (Parent) fxmlLoader.load();
-            stageGoogle = new Stage();
-            stageGoogle.setScene(new Scene(root2));
-            stageGoogle.show();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void onClickCambridge(){
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Cambridge.fxml"));
-            Parent root3 = (Parent) fxmlLoader.load();
-            stageCombridge = new Stage();
-            stageCombridge.setScene(new Scene(root3));
-            stageCombridge.show();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
 }

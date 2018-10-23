@@ -12,6 +12,9 @@ public class Controller1 {
     @FXML
     private TextField meanText;
 
+    /**
+     * Hàm bắt sự kiện của chức năng thêm từ
+     */
     public void onClickThem(){
         Controller action = new Controller();
         String str1 = wordText.getText();
@@ -43,6 +46,9 @@ public class Controller1 {
         alert.show();
     }
 
+    /**
+     * Hàm bắt sự kiện của Button "Hủy" trong cửa sổ thêm từ
+     */
     public void onClickHuy(){
         Controller.stageAdd.close();
     }
