@@ -3,13 +3,18 @@ package sample;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -33,14 +38,25 @@ public class Controller implements Initializable {
     @FXML
     private WebView webView;
     private WebEngine webEngine;
+    //@FXML
+    //private WebView webGoole;
+    //private WebEngine engineGoogle;
 
-    public boolean AnhDict = true;
+    public static Stage stageAdd;
+    public static Stage stageGoogle;
+    public static Stage stageCombridge;
+    public static boolean AnhDict = true;
+
     public static Map<String,String> dataEV = new HashMap<>();
     public static ArrayList<String> wordTargetEV = new ArrayList<>();
     public static Map<String,String> dataVE = new HashMap<>();
     public static ArrayList<String> wordTargetVE = new ArrayList<>();
     public static Map<String,String> currData = new HashMap<>();
     public static ArrayList<String> currWordTarget = new ArrayList<>();
+
+    public TextField getSearchText(){
+        return searchText;
+    }
 
     /**
      * Đọc file từ điển Anh - Việt hoặc Việt - Anh
@@ -239,7 +255,7 @@ public class Controller implements Initializable {
         removeWord(word);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
-        alert.setHeaderText("Bạn đã xóa bỏ thành công");
+        alert.setHeaderText("Bạn đã xóa bỏ thành công!");
         alert.setContentText("Từ được xóa bỏ là "+word);
         alert.show();
     }
@@ -296,11 +312,68 @@ public class Controller implements Initializable {
             wordTargetEV = currWordTarget;
             dataEV = currData;
             updateDict("E_V");
+            //loadDict("E_V");
+            autoCompletionBinding.dispose();
+            autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataEV.keySet());
         }
         else{
             wordTargetVE = currWordTarget;
             dataVE = currData;
             updateDict("V_E");
+            //loadDict("V_E");
+            autoCompletionBinding.dispose();
+            autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataVE.keySet());
+        }
+    }
+    public void onClickAdd(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample1.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            stageAdd = new Stage();
+            stageAdd.setScene(new Scene(root1));
+            stageAdd.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    public void setAutoCompleteUpdate(){
+        if (AnhDict == true){
+            autoCompletionBinding.dispose();
+            autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataEV.keySet());
+        }
+        else {
+            autoCompletionBinding.dispose();
+            autoCompletionBinding = TextFields.bindAutoCompletion(searchText,dataVE.keySet());
+        }
+    }
+    */
+
+    public void onClickGoogleAPI(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GoogleAPI.fxml"));
+            Parent root2 = (Parent) fxmlLoader.load();
+            stageGoogle = new Stage();
+            stageGoogle.setScene(new Scene(root2));
+            stageGoogle.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void onClickCambridge(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Cambridge.fxml"));
+            Parent root3 = (Parent) fxmlLoader.load();
+            stageCombridge = new Stage();
+            stageCombridge.setScene(new Scene(root3));
+            stageCombridge.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

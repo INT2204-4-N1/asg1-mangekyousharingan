@@ -21,6 +21,12 @@
                         <RadioMenuItem fx:id="initVA" mnemonicParsing="false" onAction="#onClickVA" text="Việt - Anh" toggleGroup="$tg_gr" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="API">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onClickGoogleAPI" text="Google Dịch" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickCambridge" text="Từ điển Cambridge" />
+              </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="Giúp đỡ">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#onClickTacGia" text="Tác giả" />
@@ -108,7 +114,7 @@
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: royalblue;" text="Thêm từ" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: royalblue;" text="Thêm từ" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <font>
                         <Font size="13.0" />
                      </font>
