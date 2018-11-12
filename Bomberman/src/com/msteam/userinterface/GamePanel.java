@@ -1,9 +1,14 @@
 package com.msteam.userinterface;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Thread thread;
@@ -12,9 +17,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private InputManager inputManager;
 
+    BufferedImage image;
+
     public GamePanel(){
 
         inputManager = new InputManager();
+
+        try {
+            image = ImageIO.read(new File("data/classic.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -24,8 +38,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     @Override
     public void paint(Graphics g){
 
-        g.setColor(Color.RED);
+        g.setColor(Color.WHITE);
         g.fillRect(0,0,GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT);
+
+        g.drawImage(image,27,27,this);
 
     }
 
