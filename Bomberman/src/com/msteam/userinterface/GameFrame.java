@@ -25,7 +25,9 @@ public class GameFrame extends JFrame{
     }
 
     public void startGame(){
+
         gamePanel.startGame();
+
     }
     public static void main (String[] args){
 

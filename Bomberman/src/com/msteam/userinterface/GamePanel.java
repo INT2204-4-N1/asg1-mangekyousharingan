@@ -19,18 +19,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private InputManager inputManager;
 
-    BufferedImage image;
-
     public GamePanel(){
 
         inputManager = new InputManager();
 
-        try {
-            image = ImageIO.read(new FileImageInputStream(new File("Bomberman\\data\\classic.png")) {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -44,7 +36,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         g.setColor(Color.WHITE);
         g.fillRect(0,0,GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT);
 
-        g.drawImage(image,27,27,this);
 
     }
 
