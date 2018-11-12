@@ -1,6 +1,8 @@
 package com.msteam.userinterface;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -24,7 +26,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         inputManager = new InputManager();
 
         try {
-            image = ImageIO.read(new File("data/classic.png"));
+            image = ImageIO.read(new FileImageInputStream(new File("Bomberman\\data\\classic.png")) {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
