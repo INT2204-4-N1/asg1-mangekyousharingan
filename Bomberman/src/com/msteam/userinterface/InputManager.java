@@ -3,6 +3,10 @@ package com.msteam.userinterface;
 import java.awt.event.KeyEvent;
 
 public class InputManager {
+    /**
+     * Event cho key nhấn từ bàn phím khi GIỮ PHÍM
+     * @param keyCode: key đc nhấn từ bàn phím
+     */
     public void processKeyPressed(int keyCode){
 
         switch (keyCode){
@@ -28,7 +32,10 @@ public class InputManager {
                 break;
         }
     }
-
+    /**
+     * Event cho key nhấn từ bàn phím khi THẢ PHÍM
+     * @param keyCode: key đc nhấn từ bàn phím
+     */
     public void processKeyReleased(int keyCode){
 
         switch (keyCode){
