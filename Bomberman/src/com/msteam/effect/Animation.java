@@ -1,8 +1,6 @@
 package com.msteam.effect;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -175,8 +173,8 @@ public class Animation {
      */
     public void reset(){
 
-        this.currFrame = 0;
-        this.beginTime = 0;
+        currFrame = 0;
+        beginTime = 0;
 
         for (int i=0; i < ignoreFrames.size(); i++){
 
