@@ -211,7 +211,7 @@ public class Animation {
         else {
 
             if (currTime - beginTime > delayFrames.get(currFrame)){
-
+                nextFrame();
                 beginTime = currTime;
             }
         }

@@ -82,9 +82,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         frame6.draw(g2,450,50);
         frame7.draw(g2,520,50);
 
-
         anim.update(System.nanoTime());
         anim.draw(50,150,g2);
+
     }
 
     /**
