@@ -1,6 +1,8 @@
 package com.msteam.effect;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -253,6 +255,7 @@ public class Animation {
 
     /*
      Lật ngược tấm hình trái -> phải
+     */
     public void flipAllImage(){
 
         for (int i = 0; i< frameImages.size(); i++){
@@ -268,7 +271,6 @@ public class Animation {
             frameImages.get(i).setImage(image);
         }
     }
-    */
 
     public void draw(int x, int y, Graphics2D g2){
 
