@@ -1,7 +1,9 @@
 package com.msteam.userinterface;
 
 import com.msteam.effect.Animation;
+import com.msteam.effect.CacheDataLoader;
 import com.msteam.effect.FrameImage;
+import com.msteam.gameobject.BomberMan;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
@@ -22,69 +24,59 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private InputManager inputManager;
 
+    private BufferedImage bufImage;
+    private Graphics2D bufG2D;
+
     FrameImage frame1, frame2, frame3, frame4, frame5, frame6, frame7;
     Animation anim;
 
+    BomberMan bomberMan = new BomberMan(300,300,48,64);
 
     public GamePanel() {
 
-        inputManager = new InputManager();
-        try {
-            BufferedImage image = ImageIO.read(new FileImageInputStream(new File("Bomberman\\data\\enemy-sprite-png-orc.png")));
-            BufferedImage image1 = image.getSubimage(10,205,40,50);
-            frame1 = new FrameImage("standFrame1",image1);
-            BufferedImage image2 = image.getSubimage(75,205,40,50);
-            frame2 = new FrameImage("standFrame2",image2);
-            BufferedImage image3 = image.getSubimage(140,205,40,50);
-            frame3 = new FrameImage("standFrame3",image3);
-            BufferedImage image4 = image.getSubimage(204,205,40,50);
-            frame4 = new FrameImage("standFrame4",image4);
-            BufferedImage image5 = image.getSubimage(267,205,40,50);
-            frame5 = new FrameImage("standFrame5",image5);
-            BufferedImage image6 = image.getSubimage(330,205,40,50);
-            frame6 = new FrameImage("standFrame6",image6);
-            BufferedImage image7 = image.getSubimage(395,205,40,50);
-            frame7 = new FrameImage("standFrame7",image7);
+        inputManager = new InputManager(this);
 
-            anim = new Animation();
-            anim.add(frame1,200*1000000);
-            anim.add(frame2,200*1000000);
-            anim.add(frame3,200*1000000);
-            anim.add(frame4,200*1000000);
-            anim.add(frame5,200*1000000);
-            anim.add(frame6,200*1000000);
-            anim.add(frame7,200*1000000);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
 
     }
+
+    public void updateGame(){
+
+        bomberMan.update();
+    }
+    public void RenderGame(){
+
+        if (bufImage == null){
+
+            bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
+        }
+
+        if (bufImage != null){
+
+            bufG2D = (Graphics2D) bufImage.getGraphics();
+        }
+
+        if (bufG2D != null){
+
+            bufG2D.setColor(Color.WHITE);
+            bufG2D.fillRect(0,0,GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT);
+
+            bufG2D.setColor(Color.darkGray);
+
+
+            //draw game here
+            bomberMan.draw(bufG2D);
+        }
+    }
+
     /**
      * Tự động gọi khi add Panel vào Frame
      * @param g
      */
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
 
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT);
-
-
-        Graphics2D g2 = (Graphics2D) g;
-
-        frame1.draw(g2,50,50);
-        frame2.draw(g2,130,50);
-        frame3.draw(g2,210,50);
-        frame4.draw(g2,290,50);
-        frame5.draw(g2,370,50);
-        frame6.draw(g2,450,50);
-        frame7.draw(g2,520,50);
-
-        anim.update(System.nanoTime());
-        anim.draw(50,150,g2);
-
+        g.drawImage(bufImage, 0, 0, this);
     }
 
     /**
@@ -115,7 +107,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
             //update Game
             //render Game
-
+            updateGame();
+            RenderGame();
             repaint();
 
             long deltaTime = System.nanoTime() - beginTime;

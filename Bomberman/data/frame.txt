@@ -1,0 +1,86 @@
+
+12
+
+up1
+image Bomberman/data/classic.png
+x 0
+y 0
+w 12
+h 16
+
+up2
+image Bomberman/data/classic.png
+x 0
+y 17
+w 12
+h 16
+
+up3
+image Bomberman/data/classic.png
+x 0
+y 33
+w 12
+h 16
+
+down1
+image Bomberman/data/classic.png
+x 32
+y 0
+w 12
+h 16
+
+down2
+image Bomberman/data/classic.png
+x 32
+y 16
+w 12
+h 16
+
+down3
+image Bomberman/data/classic.png
+x 32
+y 32
+w 12
+h 16
+
+left1
+image Bomberman/data/classic.png
+x 48
+y 0
+w 10
+h 15
+
+left2
+image Bomberman/data/classic.png
+x 48
+y 16
+w 10
+h 16
+
+left3
+image Bomberman/data/classic.png
+x 48
+y 33
+w 10
+h 15
+
+right1
+image Bomberman/data/classic.png
+x 17
+y 0
+w 10
+h 16
+
+right2
+image Bomberman/data/classic.png
+x 17
+y 17
+w 10
+h 16
+
+right3
+image Bomberman/data/classic.png
+x 17
+y 33
+w 10
+h 16
