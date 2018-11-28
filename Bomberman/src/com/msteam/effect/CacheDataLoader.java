@@ -1,5 +1,8 @@
 package com.msteam.effect;
 
+import com.msteam.exceptions.LoadLevelException;
+import javafx.fxml.LoadException;
+
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
 import java.awt.image.BufferedImage;
@@ -8,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.StringTokenizer;
 
 /**
  * tránh tạo instance khác nó chỉ dùng 1 instance
@@ -23,7 +27,14 @@ public class CacheDataLoader {
 
     private Hashtable<String, FrameImage> frameImages;
     private Hashtable<String, Animation> animations;
-    private int[][] map;
+    /**
+     * map: bản đồ của level
+     * width: chiều rộng
+     * height: chiều cao
+     */
+    private String[][] map;
+    protected int _width = 20, _height = 20; // default values just for testing
+    protected int _level;
 
 
     private CacheDataLoader(){
@@ -54,25 +65,39 @@ public class CacheDataLoader {
         return animation;
     }
 
-    public int[][] getMap(){
+    public String[][] getMap(){
 
         return instance.map;
     }
 
-    public void LoadMap() throws IOException{
-        //TODO: load data lay data level1.txt cua thay, levelmapfile = path = "Bomberman\\data\\Level1.txt";
+    public void LoadMap() throws LoadLevelException {
+        //TODO: load data lay data level1.txt cua thay, levelmapfile = path = "Bomberman\\data\\Levels\\Level1.txt";
         //TODO: load vao mang 2 chieu co ten map da tao o tren
 
+        try {
+            FileReader fr = new FileReader(levelmapfile);
+            BufferedReader br = new BufferedReader(fr);
 
-        FileReader fr = new FileReader(levelmapfile);
-        BufferedReader br = new BufferedReader(fr);
+            String line = null;
+            line = br.readLine();
 
-        String line = null;
+            StringTokenizer tokens = new StringTokenizer(line);
 
+            _level = Integer.parseInt(tokens.nextToken());
+            _height = Integer.parseInt(tokens.nextToken());
+            _width = Integer.parseInt(tokens.nextToken());
+
+            for (int i=0;i< _width;i++)
+                for (int j=0;i<_height;j++)
+                    map[j][i] = line.substring(_width,_width+1);
+            br.close();
+        } catch (IOException e) {
+            throw new LoadLevelException("Error loading level " + levelmapfile, e);
+        }
 
     }
 
-    public void LoadData()throws IOException{
+    public void LoadData() throws IOException,LoadLevelException {
 
         LoadFrame();
         LoadAnimation();
