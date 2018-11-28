@@ -79,6 +79,7 @@ public class CacheDataLoader {
             BufferedReader br = new BufferedReader(fr);
 
             String line = null;
+            line = br.readLine();
 
             StringTokenizer tokens = new StringTokenizer(line);
 
