@@ -12,13 +12,16 @@ public class BomberMan {
 
     private float speedX;
     private float speedY;
-
+    /**
+     * Hướng đặt bom
+     * đặt ở đuôi hoặc ở đầu (bắn đạn)
+     */
     public static int DIR_LEFT;
     public static int DIR_RIGHT;
     public static int DIR_UP;
     public static int DIR_DOWN;
     private int direction;
-
+    // Có thể không dùng, vì bom đặt ngay dưới hoạt ảnh nhân vật
     public BomberMan(float posX, float posY, float width, float height){
 
         this.posX = posX;

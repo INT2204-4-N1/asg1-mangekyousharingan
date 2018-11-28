@@ -79,7 +79,6 @@ public class CacheDataLoader {
             BufferedReader br = new BufferedReader(fr);
 
             String line = null;
-            line = br.readLine();
 
             StringTokenizer tokens = new StringTokenizer(line);
 
@@ -87,9 +86,11 @@ public class CacheDataLoader {
             _height = Integer.parseInt(tokens.nextToken());
             _width = Integer.parseInt(tokens.nextToken());
 
-            for (int i=0;i< _width;i++)
-                for (int j=0;i<_height;j++)
-                    map[j][i] = line.substring(_width,_width+1);
+            for (int i=0;i< _width;i++) {
+                line = br.readLine();
+                for (int j = 0; i < _height; j++)
+                    map[j][i] = line.substring(_width, _width + 1);
+            }
             br.close();
         } catch (IOException e) {
             throw new LoadLevelException("Error loading level " + levelmapfile, e);
