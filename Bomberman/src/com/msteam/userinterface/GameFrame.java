@@ -1,5 +1,7 @@
 package com.msteam.userinterface;
 
+import com.msteam.effect.CacheDataLoader;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,8 +20,17 @@ public class GameFrame extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        try{
+
+            CacheDataLoader.getInstance().LoadData();
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+
         gamePanel = new GamePanel();
         add(gamePanel);
+
         this.addKeyListener(gamePanel);
 
     }

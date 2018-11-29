@@ -10,7 +10,8 @@ public class FrameImage {
 
     public FrameImage(){
 
-
+        name = null;
+        image = null;
     }
 
     public FrameImage(String name, BufferedImage image){

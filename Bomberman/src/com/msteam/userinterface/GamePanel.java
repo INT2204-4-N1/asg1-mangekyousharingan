@@ -5,6 +5,7 @@ import com.msteam.effect.CacheDataLoader;
 import com.msteam.effect.FrameImage;
 import com.msteam.exceptions.LoadLevelException;
 import com.msteam.gameobject.BomberMan;
+import com.msteam.gameobject.GameWorld;
 import com.msteam.gameobject.Map;
 
 import javax.imageio.ImageIO;
@@ -30,23 +31,25 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private BufferedImage bufImage;
     private Graphics2D bufG2D;
 
-    FrameImage frame1, frame2, frame3, frame4, frame5, frame6, frame7;
-    Animation anim;
+    public GameWorld gameWorld;
 
-    BomberMan bomberMan = new BomberMan(300,300,48,64);
-    Map map = new Map(0,0);
+
 
     public GamePanel() {
 
-        inputManager = new InputManager(this);
-
+        gameWorld = new GameWorld();
+        inputManager = new InputManager(gameWorld);
         bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
+    }
 
+    public GameWorld getGameWorld() {
+
+        return gameWorld;
     }
 
     public void updateGame(){
 
-        bomberMan.update();
+        gameWorld.update();
     }
     public void RenderGame() throws LoadLevelException {
 
@@ -65,12 +68,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             bufG2D.setColor(Color.WHITE);
             bufG2D.fillRect(0,0,GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT);
 
-            bufG2D.setColor(Color.darkGray);
-
-
-            //draw game here
-            //bomberMan.draw(bufG2D);
-            map.draw(bufG2D);
+            gameWorld.render(bufG2D);
         }
     }
 

@@ -51,7 +51,7 @@ public class CacheDataLoader {
         frameImages = new Hashtable<String, FrameImage>();
         animations = new Hashtable<String, Animation>();
 
-        _height = 20;
+        //_height = 20;
     }
 
     public static CacheDataLoader getInstance(){

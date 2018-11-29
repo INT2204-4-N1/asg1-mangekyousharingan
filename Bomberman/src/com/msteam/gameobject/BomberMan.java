@@ -22,6 +22,7 @@ public class BomberMan {
     public static int DIR_DOWN;
     private int direction;
     // Có thể không dùng, vì bom đặt ngay dưới hoạt ảnh nhân vật
+
     public BomberMan(float posX, float posY, float width, float height){
 
         this.posX = posX;
@@ -30,15 +31,28 @@ public class BomberMan {
         this.height = height;
     }
 
+    public Rectangle getBoundForCollisionWithMap(){
+
+        Rectangle bound = new Rectangle();
+        bound.x = (int) (getPosX() - (getWidth())/2);
+        bound.y = (int) (getPosY() - (getWidth())/2);
+        bound.width = (int) getWidth();
+        bound.height = (int) getHeight();
+        return bound;
+    }
+
     public void update(){
 
         setPosX(getPosX() + speedX);
+        setPosY(getPosY() + speedY);
     }
 
     public void draw(Graphics2D g2){
 
         g2.setColor(Color.GREEN);
-        g2.fillRect((int) posX,(int) posY,(int) width,(int) height);
+        g2.fillRect( (int)( posX - (getWidth()/2)), (int)( posY - (getHeight()/2)),(int) width,(int) height);
+        g2.setColor(Color.RED);
+        g2.fillRect((int)( posX), (int)( posY),2,2);
     }
 
     public void setPosX(float posX) {
