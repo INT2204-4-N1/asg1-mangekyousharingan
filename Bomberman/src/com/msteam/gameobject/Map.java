@@ -1,6 +1,7 @@
 package com.msteam.gameobject;
 
 import com.msteam.effect.CacheDataLoader;
+import com.msteam.exceptions.LoadLevelException;
 import sun.misc.Cache;
 
 import java.awt.*;
@@ -25,10 +26,10 @@ public class Map {
         return this.tileSize;
     }
 
-    public void draw(Graphics2D g2){
-
+    public void draw(Graphics2D g2) throws LoadLevelException {
+        CacheDataLoader.getInstance().LoadMap();
         map = CacheDataLoader.getInstance().getMap();
-        System.out.println(map[0][0]);
+        //System.out.println(map[0][0]);
         g2.setColor(Color.GRAY);
         for (int i = 0; i < CacheDataLoader.getInstance().get_height()-5; i++){
             for (int j = 0; j < CacheDataLoader.getInstance().get_width()-5; j++){

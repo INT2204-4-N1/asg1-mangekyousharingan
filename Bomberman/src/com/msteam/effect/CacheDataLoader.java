@@ -33,7 +33,7 @@ public class CacheDataLoader {
      * height: chiều cao
      */
     private String[][] map;
-    protected int _width = 20, _height = 20; // default values just for testing
+    protected int _width = 10, _height = 10; // default values just for testing
     protected int _level;
 
     public int get_width(){
@@ -51,6 +51,7 @@ public class CacheDataLoader {
         frameImages = new Hashtable<String, FrameImage>();
         animations = new Hashtable<String, Animation>();
 
+        _height = 20;
     }
 
     public static CacheDataLoader getInstance(){
@@ -79,10 +80,11 @@ public class CacheDataLoader {
         return instance.map;
     }
 
+    /**
+     * Load dữ liệu map từ file Level1.txt
+     * @throws LoadLevelException
+     */
     public void LoadMap() throws LoadLevelException {
-        //TODO: load data lay data level1.txt cua thay, levelmapfile = path = "Bomberman\\data\\Levels\\Level1.txt";
-        //TODO: load vao mang 2 chieu co ten map da tao o tren
-
         try {
             FileReader fr = new FileReader(levelmapfile);
             BufferedReader br = new BufferedReader(fr);
@@ -96,10 +98,12 @@ public class CacheDataLoader {
             _height = Integer.parseInt(tokens.nextToken());
             _width = Integer.parseInt(tokens.nextToken());
 
-            for (int i=0;i< _width;i++) {
+            instance.map = new String[get_height()][get_width()];
+            for(int i = 0;i < _height;i++){
                 line = br.readLine();
-                for (int j = 0; j < _height; j++)
-                    map[j][i] = line.substring(_width, _width+1);
+                for (int j = 0; j<_width;j++){
+                    instance.map[i][j] = String.valueOf(line.charAt(j));
+                }
             }
             br.close();
         } catch (IOException e) {

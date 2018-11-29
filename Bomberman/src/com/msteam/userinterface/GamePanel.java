@@ -3,6 +3,7 @@ package com.msteam.userinterface;
 import com.msteam.effect.Animation;
 import com.msteam.effect.CacheDataLoader;
 import com.msteam.effect.FrameImage;
+import com.msteam.exceptions.LoadLevelException;
 import com.msteam.gameobject.BomberMan;
 import com.msteam.gameobject.Map;
 
@@ -47,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         bomberMan.update();
     }
-    public void RenderGame(){
+    public void RenderGame() throws LoadLevelException {
 
         if (bufImage == null){
 
@@ -112,7 +113,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             //update Game
             //render Game
             updateGame();
-            RenderGame();
+            try {
+                RenderGame();
+            } catch (LoadLevelException e) {
+                e.printStackTrace();
+            }
             repaint();
 
             long deltaTime = System.nanoTime() - beginTime;
