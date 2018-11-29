@@ -4,6 +4,7 @@ import com.msteam.effect.Animation;
 import com.msteam.effect.CacheDataLoader;
 import com.msteam.effect.FrameImage;
 import com.msteam.gameobject.BomberMan;
+import com.msteam.gameobject.Map;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
@@ -18,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
+
     private Thread thread;
 
     private boolean isRunning;              // Kiểm soát vòng lặp game
@@ -31,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     Animation anim;
 
     BomberMan bomberMan = new BomberMan(300,300,48,64);
+    Map map = new Map(0,0);
 
     public GamePanel() {
 
@@ -65,7 +68,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 
             //draw game here
-            bomberMan.draw(bufG2D);
+            //bomberMan.draw(bufG2D);
+            map.draw(bufG2D);
         }
     }
 

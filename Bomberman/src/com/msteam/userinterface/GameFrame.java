@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class GameFrame extends JFrame{
 
-    public static final int SCREEN_WIDTH = 1000;            // final gan nhu hang const bien se k bi thay doi
+    public static final int SCREEN_WIDTH = 600;            // final gan nhu hang const bien se k bi thay doi
     public static final int SCREEN_HEIGHT = 600;
 
     GamePanel gamePanel;

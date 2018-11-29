@@ -36,6 +36,15 @@ public class CacheDataLoader {
     protected int _width = 20, _height = 20; // default values just for testing
     protected int _level;
 
+    public int get_width(){
+
+        return instance._width;
+    }
+
+    public int get_height(){
+
+        return instance._height;
+    }
 
     private CacheDataLoader(){
 
@@ -89,8 +98,8 @@ public class CacheDataLoader {
 
             for (int i=0;i< _width;i++) {
                 line = br.readLine();
-                for (int j = 0; i < _height; j++)
-                    map[j][i] = line.substring(_width, _width + 1);
+                for (int j = 0; j < _height; j++)
+                    map[j][i] = line.substring(_width, _width+1);
             }
             br.close();
         } catch (IOException e) {
