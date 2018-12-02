@@ -33,7 +33,7 @@ public class CacheDataLoader {
      * height: chiều cao
      */
     private String[][] map;
-    protected int _width = 10, _height = 10; // default values just for testing
+    protected int _width, _height; // default values just for testing
     protected int _level;
 
     public int get_width(){

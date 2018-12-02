@@ -24,26 +24,26 @@ public class InputManager {
 
             case KeyEvent.VK_UP:
                 System.out.println("UP");
-                gameWorld.bomberMan.setDirection(BomberMan.DIR_UP);
-                gameWorld.bomberMan.setSpeedY(-5);
+                gameWorld.bomberMan.setDirection(gameWorld.bomberMan.DIR_UP);
+                gameWorld.bomberMan.run();
                 break;
 
             case KeyEvent.VK_DOWN:
                 System.out.println("DOWN");
-                gameWorld.bomberMan.setDirection(BomberMan.DIR_DOWN);
-                gameWorld.bomberMan.setSpeedY(5);
+                gameWorld.bomberMan.setDirection(gameWorld.bomberMan.DIR_DOWN);
+                gameWorld.bomberMan.run();
                 break;
 
             case KeyEvent.VK_LEFT:
                 System.out.println("LEFT");
-                gameWorld.bomberMan.setDirection(BomberMan.DIR_LEFT);
-                gameWorld.bomberMan.setSpeedX(-5);
+                gameWorld.bomberMan.setDirection(gameWorld.bomberMan.DIR_LEFT);
+                gameWorld.bomberMan.run();
                 break;
 
             case KeyEvent.VK_RIGHT:
                 System.out.println("RIGHT");
-                gameWorld.bomberMan.setDirection(BomberMan.DIR_LEFT);
-                gameWorld.bomberMan.setSpeedX(5);
+                gameWorld.bomberMan.setDirection(gameWorld.bomberMan.DIR_RIGHT);
+                gameWorld.bomberMan.run();
                 break;
 
             case KeyEvent.VK_SPACE:

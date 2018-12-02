@@ -1,36 +1,53 @@
 package com.msteam.gameobject;
 
+import com.msteam.effect.Animation;
+import com.msteam.effect.CacheDataLoader;
+
 import java.awt.*;
 
-public class BomberMan {
+public class BomberMan extends Character {
 
-    private float posX;
-    private float posY;
+    public static int RUNSPEED = 3;
 
-    private float width;
-    private float height;
+    private Animation leftAnimation, rightAnimation, upAnimation, downAnimation;
 
-    private float speedX;
-    private float speedY;
     /**
      * Hướng đặt bom
      * đặt ở đuôi hoặc ở đầu (bắn đạn)
      */
-    public static int DIR_LEFT;
-    public static int DIR_RIGHT;
-    public static int DIR_UP;
-    public static int DIR_DOWN;
-    private int direction;
+
     // Có thể không dùng, vì bom đặt ngay dưới hoạt ảnh nhân vật
 
-    public BomberMan(float posX, float posY, float width, float height){
+    GameWorld gameWorld;
 
-        this.posX = posX;
-        this.posY = posY;
-        this.width = width;
-        this.height = height;
+    public BomberMan(float x, float y, GameWorld gameWorld) {
+
+        super(x, y, 24, 32, gameWorld);
+        setTeamType(LEAGUE_TEAM);
+        leftAnimation = CacheDataLoader.getInstance().getAnimation("left");
+        rightAnimation = CacheDataLoader.getInstance().getAnimation("right");
+        upAnimation = CacheDataLoader.getInstance().getAnimation("up");
+        downAnimation = CacheDataLoader.getInstance().getAnimation("down");
     }
 
+    @Override
+    public void run() {
+        if (getDirection() == DIR_LEFT) {
+            setSpeedX(-3);
+        }
+        if (getDirection() == DIR_RIGHT) {
+            setSpeedX(3);
+        }
+        if (getDirection() == DIR_UP) {
+            setSpeedY(-3);
+        }
+        if (getDirection() == DIR_DOWN) {
+            setSpeedY(3);
+        }
+    }
+
+    // Method nay o lop ParticularObj
+    /*
     public Rectangle getBoundForCollisionWithMap(){
 
         Rectangle bound = new Rectangle();
@@ -40,88 +57,29 @@ public class BomberMan {
         bound.height = (int) getHeight();
         return bound;
     }
+    */
+    @Override
+    public void update() {
+        super.update();
 
-    public void update(){
 
-        setPosX(getPosX() + speedX);
-        setPosY(getPosY() + speedY);
+        //setPosX(getPosX() + getSpeedX());
+        //setPosY(getPosY() + getSpeedY());
+
+
+
+        //Rectangle future =
     }
 
-    public void draw(Graphics2D g2){
+    @Override
+    public void draw(Graphics2D g2) {
 
-        g2.setColor(Color.GREEN);
-        g2.fillRect( (int)( posX - (getWidth()/2)), (int)( posY - (getHeight()/2)),(int) width,(int) height);
-        g2.setColor(Color.RED);
-        g2.fillRect((int)( posX), (int)( posY),2,2);
+        drawBoundCollisionWithMap(g2);
     }
 
-    public void setPosX(float posX) {
 
-        this.posX = posX;
-    }
-
-    public float getPosX() {
-
-        return posX;
-    }
-
-    public void setPosY(float posY) {
-
-        this.posY = posY;
-    }
-
-    public float getPosY() {
-
-        return posY;
-    }
-
-    public void setWidth(float width) {
-
-        this.width = width;
-    }
-
-    public float getWidth() {
-
-        return width;
-    }
-
-    public void setHeight(float height) {
-
-        this.height = height;
-    }
-
-    public float getHeight() {
-
-        return height;
-    }
-
-    public void setSpeedX(float speedX) {
-
-        this.speedX = speedX;
-    }
-
-    public float getSpeedX() {
-
-        return speedX;
-    }
-
-    public void setSpeedY(float speedY) {
-
-        this.speedY = speedY;
-    }
-
-    public float getSpeedY() {
-
-        return speedY;
-    }
-
-    public void setDirection(int direction) {
-
-        this.direction = direction;
-    }
-
-    public int getDirection() {
-
-        return direction;
+    @Override
+    public Rectangle getBoundForCollisionWithEnemy() {
+        return null;
     }
 }

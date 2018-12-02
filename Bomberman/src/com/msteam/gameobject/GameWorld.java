@@ -1,29 +1,33 @@
 package com.msteam.gameobject;
 
 
+import com.msteam.userinterface.GameFrame;
+
 import java.awt.*;
 
-public class GameWorld {
+public class GameWorld{
 
     public BomberMan bomberMan;
-
     public Map map;
+    public Camera camera;
 
     public GameWorld(){
 
-        bomberMan = new BomberMan(300,300,24,32);
-        map = new Map(0,0);
+        bomberMan = new BomberMan(80,80,this);
+        map = new Map(0,0,this);
+        camera = new Camera(0,0, GameFrame.SCREEN_WIDTH/2,GameFrame.SCREEN_HEIGHT/2,this);
     }
 
     public void update(){
 
         bomberMan.update();
+        camera.update();
     }
 
     public void render(Graphics2D g2){
 
-        bomberMan.draw(g2);
         map.draw(g2);
+        bomberMan.draw(g2);
     }
 
 

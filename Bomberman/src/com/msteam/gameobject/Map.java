@@ -7,18 +7,16 @@ import sun.plugin.cache.CacheUpdateHelper;
 
 import java.awt.*;
 
-public class Map {
+public class Map extends GameObject{
 
     private String[][] map;
     private int tileSize;
 
-    public float posX, posY;
 
-    public Map(float x, float y){
+    public Map(float x, float y, GameWorld gameWorld){
 
-        this.posX = x;
-        this.posY = y;
-        this.tileSize = 32;
+        super(x,y,gameWorld);
+        this.tileSize = 48;
         map = CacheDataLoader.getInstance().getMap();
     }
 
@@ -29,6 +27,7 @@ public class Map {
 
     public void draw(Graphics2D g2){
 
+        Camera camera = getGameWorld().camera;
 
         g2.setColor(Color.GRAY);
         for (int i = 0; i < CacheDataLoader.getInstance().get_height(); i++){
@@ -37,15 +36,16 @@ public class Map {
 
                 if (map[i][j].equals("#")){
 
-                    g2.fillRect((int)posX + j*tileSize,(int)posY + i*tileSize, tileSize, tileSize );
+                    g2.fillRect((int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize );
                 }
             }
         }
     }
 
-    // don't care this, just for megaman =)))
-    /*
-    public Rectangle haveCollisionWithLand(Rectangle rect){
+    @Override
+    public void update() {}
+
+    public Rectangle impactWithDown(Rectangle rect){
 
         int posX1 = rect.x/tileSize;
         posX1 -= 2;
@@ -65,10 +65,135 @@ public class Map {
         }
 
         for (int y = posY ; y < CacheDataLoader.getInstance().get_height() ; y++){
+            for (int x = posX1 ; x <= posX2 ; x++){
 
+                if (map[y][x].equals("#")){
+
+                    Rectangle r = new Rectangle((int) getPosX() + x * tileSize,(int) getPosY()+ y * tileSize, tileSize, tileSize);
+                    if (rect.intersects(r)){
+
+                        return r;
+                    }
+                }
+            }
         }
         return null;
 
     }
-    */
+
+    public Rectangle impactWithUp(Rectangle rect){
+
+        int posX1= rect.x/tileSize;
+        posX1 -= 2;
+        int posX2 = (rect.x + rect.width)/tileSize;
+        posX2 += 2;
+
+        int posY = rect.y/tileSize;
+
+        if (posX1 < 0){
+
+            posX1 = 0;
+        }
+        if (posX2 >= CacheDataLoader.getInstance().get_height()){
+
+            posX2 = CacheDataLoader.getInstance().get_height() - 1;
+        }
+
+        for (int y = posY; y >= 0; y--){
+            for (int x = posX1; x <= posX2; x++){
+
+                if (map[y][x].equals("#")){
+
+                    Rectangle r = new Rectangle((int) getPosX() + x*tileSize,(int) getPosY() + y*tileSize,tileSize,tileSize);
+                    if (rect.intersects(rect)){
+
+                        return r;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Rectangle impactWithRight(Rectangle rect){
+
+        int posY1 = rect.y/tileSize;
+        posY1 -= 2;
+        int posY2 = rect.y/tileSize;
+        posY2 += 2;
+
+        int posX1 = (rect.x + rect.width)/tileSize;
+        int posX2 = posX1 + 3;
+        if (posX2 >= CacheDataLoader.getInstance().get_width()){
+
+            posX2 = CacheDataLoader.getInstance().get_width() - 1;
+        }
+
+        if (posY1 < 0){
+
+            posY1 = 0;
+        }
+        if (posY2 >= CacheDataLoader.getInstance().get_height()){
+
+            posY2 = CacheDataLoader.getInstance().get_height() - 1;
+        }
+
+        for (int x = posX1; x <= posX2; x++){
+            for (int y = posY1; y <= posY2; y++){
+
+                if (map[y][x].equals("#")){
+
+                    Rectangle r = new Rectangle((int) getPosX() + x*tileSize,(int) getPosY() + y*tileSize,tileSize,tileSize);
+                    if (r.y < rect.y + rect.height - 1 && rect.intersects(r)){
+
+                        return r;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Rectangle impactWithLeft(Rectangle rect){
+
+        int posY1 = rect.y/tileSize;
+        posY1 -= 2;
+        int posY2 = (rect.y + rect.height)/tileSize;
+        posY2 += 2;
+
+        int posX1 = (rect.x + rect.width)/tileSize;
+        int posX2 = posX1 - 3;
+        if (posX2 < 0){
+
+            posX2 = 0;
+        }
+        if (posY1 < 0){
+
+            posY1 = 0;
+        }
+        if (posY2 >= CacheDataLoader.getInstance().get_height()){
+
+            posY2 = CacheDataLoader.getInstance().get_height() - 1;
+        }
+
+        for (int x = posX1; x >= posX2; x--){
+            for (int y = posY1; y <= posY2; y++){
+                if (map[y][x].equals("#")){
+                    Rectangle r = new Rectangle((int) getPosX() + x*tileSize,(int) getPosY() + y*tileSize,tileSize,tileSize);
+                    if (r.y < rect.y + rect.height - 1 && rect.intersects(r)){
+
+                        return r;
+                    }
+
+                }
+            }
+        }
+        return null;
+    }
+
+    public Rectangle haveCollisionWithBox(Rectangle rect){
+
+        return null;
+    }
 }

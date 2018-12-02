@@ -1,5 +1,5 @@
 
-12
+35
 
 up1
 image Bomberman/data/classic.png
@@ -84,3 +84,168 @@ x 17
 y 33
 w 10
 h 16
+
+boomberdie1
+image Bomberman/data/classic.png
+x 63
+y 31
+w 16
+h 18
+
+boomberdie2
+image Bomberman/data/classic.png
+x 79
+y 31
+w 16
+h 18
+
+boomberdie3
+image Bomberman/data/classic.png
+x 95
+y 31
+w 18
+h 18
+
+normalballoonright1
+image Bomberman/data/classic.png
+x 160
+y 0
+w 16
+h 16
+
+normalballoonright2
+image Bomberman/data/classic.png
+x 160
+y 16
+w 16
+h 16
+
+normalballoonright3
+image Bomberman/data/classic.png
+x 160
+y 32
+w 16
+h 16
+
+normalballoonleft1
+image Bomberman/data/classic.png
+x 144
+y 0
+w 16
+h 16
+
+normalballoonleft2
+image Bomberman/data/classic.png
+x 144
+y 16
+w 16
+h 16
+
+normalballoonleft3
+image Bomberman/data/classic.png
+x 143
+y 32
+w 18
+h 16
+
+normalballoondie1
+image Bomberman/data/classic.png
+x 144
+y 47
+w 16
+h 18
+
+normalballoondie2
+image Bomberman/data/classic.png
+x 241
+y 0
+w 14
+h 16
+
+normalballoondie3
+image Bomberman/data/classic.png
+x 243
+y 18
+w 10
+h 14
+
+normalballoondie4
+image Bomberman/data/classic.png
+x 243
+y 36
+w 10
+h 9
+
+
+wall
+image Bomberman/data/classic.png
+x 80
+y 0
+w 16
+h 16
+
+grass
+image Bomberman/data/classic.png
+x 96
+y 0
+w 16
+h 16
+
+brick
+image Bomberman/data/classic.png
+x 112
+y 0
+w 16
+h 16
+
+breakbick1
+image Bomberman/data/classic.png
+x 112
+y 16
+w 16
+h 16
+
+breakbick2
+image Bomberman/data/classic.png
+x 112
+y 32
+w 16
+h 16
+
+breakbick3
+image Bomberman/data/classic.png
+x 112
+y 49
+w 16
+h 16
+
+bom1
+image Bomberman/data/classic.png
+x 0
+y 48
+w 16
+h 16
+
+bom2
+image Bomberman/data/classic.png
+x 16
+y 48
+w 16
+h 16
+
+bom3
+image Bomberman/data/classic.png
+x 32
+y 48
+w 16
+h 16
+
+portal
+image Bomberman/data/classic.png
+x 64
+y 1
+w 13
+h 12
+
+
+
