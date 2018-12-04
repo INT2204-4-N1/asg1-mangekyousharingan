@@ -23,30 +23,30 @@ public abstract class Character extends ParticularObject{
             setPosY(getPosY() + getSpeedY());
 
             if(getDirection() == DIR_LEFT &&
-                    getGameWorld().map.impactWithLeft(getBoundForCollisonWithMap())!=null){
+                    getGameWorld().map.impactWithLeft(getBoundForCollisionWithMap())!=null){
 
-                Rectangle rectLeftWall = getGameWorld().map.impactWithLeft(getBoundForCollisonWithMap());
+                Rectangle rectLeftWall = getGameWorld().map.impactWithLeft(getBoundForCollisionWithMap());
                 setPosX(rectLeftWall.x + rectLeftWall.width + getWidth()/2);
                 System.out.println("Impact with left box");
             }
             if(getDirection() == DIR_RIGHT &&
-                    getGameWorld().map.impactWithRight(getBoundForCollisonWithMap())!=null){
+                    getGameWorld().map.impactWithRight(getBoundForCollisionWithMap())!=null){
 
-                Rectangle rectRightWall = getGameWorld().map.impactWithRight(getBoundForCollisonWithMap());
+                Rectangle rectRightWall = getGameWorld().map.impactWithRight(getBoundForCollisionWithMap());
                 setPosX(rectRightWall.x - getWidth()/2);
                 System.out.println("Impact with right box");
             }
             if(getDirection() == DIR_UP &&
-                    getGameWorld().map.impactWithUp(getBoundForCollisonWithMap())!=null){
+                    getGameWorld().map.impactWithUp(getBoundForCollisionWithMap())!=null){
 
                 //Rectangle rectUpWall = getGameWorld().map.impactWithUp(getBoundForCollisonWithMap());
                 //setPosY(rectUpWall.y + rectUpWall.height + getHeight()/2);
                 System.out.println("Impact with up box");
             }
             if(getDirection() == DIR_DOWN &&
-                    getGameWorld().map.impactWithRight(getBoundForCollisonWithMap())!=null){
+                    getGameWorld().map.impactWithRight(getBoundForCollisionWithMap())!=null){
 
-                Rectangle rectDownWall = getGameWorld().map.impactWithRight(getBoundForCollisonWithMap());
+                Rectangle rectDownWall = getGameWorld().map.impactWithRight(getBoundForCollisionWithMap());
                 setPosY(rectDownWall.y - getHeight()/2 );
                 System.out.println("Impact with down box");
             }

@@ -130,7 +130,7 @@ public abstract class ParticularObject extends GameObject{
         return damage;
     }
 
-    public Rectangle getBoundForCollisonWithMap(){
+    public Rectangle getBoundForCollisionWithMap(){
 
         Rectangle bound = new Rectangle();
         bound.x = (int) (getPosX() - (getWidth()/2));
@@ -158,7 +158,7 @@ public abstract class ParticularObject extends GameObject{
 
     public void drawBoundCollisionWithMap(Graphics2D g2){
 
-        Rectangle rect = getBoundForCollisonWithMap();
+        Rectangle rect = getBoundForCollisionWithMap();
         g2.setColor(Color.BLUE);
         g2.drawRect(rect.x - (int) getGameWorld().camera.getPosX(),rect.y - (int) getGameWorld().camera.getPosY(),rect.width,rect.height);
     }

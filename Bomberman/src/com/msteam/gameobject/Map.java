@@ -16,7 +16,7 @@ public class Map extends GameObject{
     public Map(float x, float y, GameWorld gameWorld){
 
         super(x,y,gameWorld);
-        this.tileSize = 48;
+        this.tileSize = 32;
         map = CacheDataLoader.getInstance().getMap();
     }
 
@@ -38,7 +38,22 @@ public class Map extends GameObject{
                     wall = CacheDataLoader.getInstance().getFrameImage("wall");
                     g2.drawImage(wall.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
                 }
-                //if (map[i][j].equals())
+                if (map[i][j].equals("*")){
+
+                    FrameImage brick = new FrameImage();
+                    brick = CacheDataLoader.getInstance().getFrameImage("brick");
+                    g2.drawImage(brick.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
+                }
+                if(map[i][j].equals("x")){
+                    FrameImage portal = new FrameImage();
+                    portal = CacheDataLoader.getInstance().getFrameImage("portal");
+                    g2.drawImage(portal.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
+                }
+                if(map[i][j].equals(" ")){
+                    FrameImage grass = new FrameImage();
+                    grass = CacheDataLoader.getInstance().getFrameImage("grass");
+                    g2.drawImage(grass.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
+                }
             }
         }
     }

@@ -35,16 +35,16 @@ public class BomberMan extends Character {
     @Override
     public void run() {
         if (getDirection() == DIR_LEFT) {
-            setSpeedX(-3);
+            setSpeedX(-5);
         }
         if (getDirection() == DIR_RIGHT) {
-            setSpeedX(3);
+            setSpeedX(5);
         }
         if (getDirection() == DIR_UP) {
-            setSpeedY(-3);
+            setSpeedY(-5);
         }
         if (getDirection() == DIR_DOWN) {
-            setSpeedY(3);
+            setSpeedY(5);
         }
     }
 

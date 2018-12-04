@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         gameWorld = new GameWorld();
         inputManager = new InputManager(gameWorld);
-        bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_RGB);
+        bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
     }
 
     public GameWorld getGameWorld() {
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         if (bufImage == null){
 
-            bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_RGB);
+            bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
         }
 
         if (bufImage != null){
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         if (bufG2D != null){
 
-            bufG2D.setColor(Color.WHITE);
+            bufG2D.setColor(Color.GREEN);
             bufG2D.fillRect(0,0,GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT);
 
             gameWorld.render(bufG2D);
