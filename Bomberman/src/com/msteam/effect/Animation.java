@@ -253,33 +253,14 @@ public class Animation {
     }
 
 
-    /*
-     Lật ngược tấm hình trái -> phải
-     */
-    public void flipAllImage(){
-
-        for (int i = 0; i< frameImages.size(); i++){
-
-            BufferedImage image = frameImages.get(i).getImage();
-
-            AffineTransform tx = AffineTransform.getScaleInstance(-1,1);
-            tx.translate(-image.getWidth(),0);
-
-            AffineTransformOp op = new AffineTransformOp(tx,AffineTransformOp.TYPE_BILINEAR);
-            image = op.filter(image,null);
-
-            frameImages.get(i).setImage(image);
-        }
-    }
-
-    public void draw(int x, int y, Graphics2D g2){
+    public void draw(int x, int y, int _width, int _height, Graphics2D g2){
 
         BufferedImage image = getCurrImage();
 
-        g2.drawImage(image, x - image.getWidth()/2, y - image.getHeight()/2,null);
+        g2.drawImage(image, x - _width/2, y - _height/2,_width,_height,null);
         if (drawRectFrame){
 
-            g2.drawRect(x - image.getWidth()/2, y - image.getHeight()/2, image.getWidth(), image.getHeight());
+            g2.drawRect(x - image.getWidth()/2, y - image.getHeight()/2,_width, _height);
         }
     }
 }

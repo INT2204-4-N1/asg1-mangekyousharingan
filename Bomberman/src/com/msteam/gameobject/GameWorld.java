@@ -15,7 +15,7 @@ public class GameWorld{
 
         bomberMan = new BomberMan(80,80,this);
         map = new Map(0,0,this);
-        camera = new Camera(0,0, GameFrame.SCREEN_WIDTH/2,GameFrame.SCREEN_HEIGHT/2,this);
+        camera = new Camera(0,0, GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,this);
     }
 
     public void update(){

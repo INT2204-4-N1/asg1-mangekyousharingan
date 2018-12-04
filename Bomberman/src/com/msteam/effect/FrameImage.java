@@ -41,9 +41,9 @@ public class FrameImage {
 
     }
 
-    public void draw(Graphics2D g2, int x, int y){
+    public void draw(Graphics2D g2, int x, int y, int _width, int _height){
 
-        g2.drawImage(image, x - image.getWidth()/2, y - image.getHeight()/2,null);
+        g2.drawImage(image, x - _width/2, y - _height/2,_width,_height,null);
 
     }
 

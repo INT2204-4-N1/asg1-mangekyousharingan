@@ -3,7 +3,7 @@ package com.msteam.userinterface;
 import com.msteam.effect.Animation;
 import com.msteam.effect.CacheDataLoader;
 import com.msteam.effect.FrameImage;
-import com.msteam.exceptions.LoadLevelException;
+
 import com.msteam.gameobject.BomberMan;
 import com.msteam.gameobject.GameWorld;
 import com.msteam.gameobject.Map;
@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         gameWorld = new GameWorld();
         inputManager = new InputManager(gameWorld);
-        bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
+        bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_RGB);
     }
 
     public GameWorld getGameWorld() {
@@ -51,11 +51,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         gameWorld.update();
     }
-    public void RenderGame() throws LoadLevelException {
+    public void RenderGame() throws Exception {
 
         if (bufImage == null){
 
-            bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_ARGB);
+            bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH,GameFrame.SCREEN_HEIGHT,BufferedImage.TYPE_INT_RGB);
         }
 
         if (bufImage != null){
@@ -113,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             updateGame();
             try {
                 RenderGame();
-            } catch (LoadLevelException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             repaint();

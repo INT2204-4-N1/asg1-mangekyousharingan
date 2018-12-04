@@ -1,7 +1,7 @@
 package com.msteam.gameobject;
 
 import com.msteam.effect.CacheDataLoader;
-import com.msteam.exceptions.LoadLevelException;
+import com.msteam.effect.FrameImage;
 import sun.misc.Cache;
 import sun.plugin.cache.CacheUpdateHelper;
 
@@ -32,12 +32,13 @@ public class Map extends GameObject{
         g2.setColor(Color.GRAY);
         for (int i = 0; i < CacheDataLoader.getInstance().get_height(); i++){
             for (int j = 0; j < CacheDataLoader.getInstance().get_width(); j++){
-
-
                 if (map[i][j].equals("#")){
 
-                    g2.fillRect((int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize );
+                    FrameImage wall = new FrameImage();
+                    wall = CacheDataLoader.getInstance().getFrameImage("wall");
+                    g2.drawImage(wall.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
                 }
+                //if (map[i][j].equals())
             }
         }
     }

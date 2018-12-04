@@ -1,14 +1,32 @@
 
-4
+10
 
 up
-up1 70000000 up2 70000000 up3 70000000
+up1 120000000 up2 120000000 up3 120000000
 
 down
-down1 70000000 down2 70000000 down3 70000000
+down1 120000000 down2 120000000 down3 120000000
 
 left
-left1 70000000 left2 70000000 left3 70000000
+left1 120000000 left2 120000000 left3 120000000
 
 right
-right1 70000000 right2 70000000 right3 70000000
+right1 120000000 right2 120000000 right3 120000000
+
+boomberdie
+boomberdie1 120000000 boomberdie2 120000000 boomberdie3 120000000
+
+normalballoonright
+normalballoonright1 120000000 normalballoonright2 120000000 normalballoonright3 120000000
+
+normalballoonleft
+normalballoonleft1 120000000 normalballoonleft2 120000000 normalballoonleft3 120000000
+
+normalballoondie
+normalballoondie1 120000000 normalballoondie2 120000000 normalballoondie3 120000000 normalballoondie4 120000000
+
+breakbrick
+breakbrick1 120000000 breakbrick2 120000000 breakbrick3 120000000
+
+bom
+bom1 120000000 bom2 120000000 bom3 120000000

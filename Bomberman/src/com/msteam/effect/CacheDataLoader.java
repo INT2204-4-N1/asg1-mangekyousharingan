@@ -1,6 +1,6 @@
 package com.msteam.effect;
 
-import com.msteam.exceptions.LoadLevelException;
+
 import javafx.fxml.LoadException;
 
 import javax.imageio.ImageIO;
@@ -82,9 +82,9 @@ public class CacheDataLoader {
 
     /**
      * Load dữ liệu map từ file Level1.txt
-     * @throws LoadLevelException
+     * @throws IOException
      */
-    public void LoadMap() throws LoadLevelException {
+    public void LoadMap() throws IOException {
         try {
             FileReader fr = new FileReader(levelmapfile);
             BufferedReader br = new BufferedReader(fr);
@@ -107,12 +107,12 @@ public class CacheDataLoader {
             }
             br.close();
         } catch (IOException e) {
-            throw new LoadLevelException("Error loading level " + levelmapfile, e);
+            throw new IOException("Error loading level " + levelmapfile, e);
         }
 
     }
 
-    public void LoadData() throws IOException,LoadLevelException {
+    public void LoadData() throws IOException {
 
         LoadFrame();
         LoadAnimation();

@@ -22,12 +22,13 @@ public class Camera extends GameObject{
 
         isLooked = false;
     }
+
     @Override
     public void update() {
-
+        BomberMan mainCharacter = getGameWorld().bomberMan;
         if (!isLooked){
 
-            BomberMan mainCharacter = getGameWorld().bomberMan;
+            //BomberMan mainCharacter = getGameWorld().bomberMan;
 
             if (mainCharacter.getPosX() - getPosX() > 400){
                 setPosX(mainCharacter.getPosX() - 400);

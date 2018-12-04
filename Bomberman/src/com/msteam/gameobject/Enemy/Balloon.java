@@ -21,19 +21,15 @@ public class Balloon extends ParticularObject {
         setTeamType(ENEMY_TEAM);
         leftMove = CacheDataLoader.getInstance().getAnimation("left");
         rightMove = CacheDataLoader.getInstance().getAnimation("right");
-        // TODO: chưa tạo file animation.txt cho enemy
-
-
-
     }
 
     @Override
     public Rectangle getBoundForCollisionWithEnemy() {
-            Rectangle rect = getBoundForCollisionWithMap();
-            rect.x += 20;
-            rect.width -= 40;
-            // TODO: chưa rõ chức năng của số 20 và 40
-            return rect;
+            //Rectangle rect = getBoundForCollisionWithMap();
+            //rect.x += 20;
+            //rect.width -= 40;
+            //// TODO: chưa rõ chức năng của số 20 và 40
+            return null;
     }
 
 
