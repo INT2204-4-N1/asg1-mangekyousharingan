@@ -1,5 +1,5 @@
 
-10
+12
 
 up
 up1 120000000 up2 120000000 up3 120000000
@@ -17,16 +17,24 @@ boomberdie
 boomberdie1 120000000 boomberdie2 120000000 boomberdie3 120000000
 
 normalballoonright
-normalballoonright1 120000000 normalballoonright2 120000000 normalballoonright3 120000000
+normalballoonright1 200000000 normalballoonright2 200000000 normalballoonright3 200000000
 
 normalballoonleft
-normalballoonleft1 120000000 normalballoonleft2 120000000 normalballoonleft3 120000000
+normalballoonleft1 200000000 normalballoonleft2 200000000 normalballoonleft3 200000000
 
 normalballoondie
-normalballoondie1 120000000 normalballoondie2 120000000 normalballoondie3 120000000 normalballoondie4 120000000
+normalballoondie1 200000000 normalballoondie2 200000000 normalballoondie3 200000000 normalballoondie4 200000000
 
 breakbrick
 breakbrick1 120000000 breakbrick2 120000000 breakbrick3 120000000
 
 bom
 bom1 120000000 bom2 120000000 bom3 120000000
+
+onealleft
+onealleft1 200000000 onealleft2 200000000 onealleft3 200000000
+
+onealright
+onealright1 200000000 onealright2 200000000 onealright3 200000000
+
+

@@ -30,17 +30,17 @@ public class Camera extends GameObject{
 
             //BomberMan mainCharacter = getGameWorld().bomberMan;
 
-            if (mainCharacter.getPosX() - getPosX() > 400){
-                setPosX(mainCharacter.getPosX() - 400);
+            if (mainCharacter.getPosX() - getPosX() > 645){
+                setPosX(mainCharacter.getPosX() - 645);
             }
-            if (mainCharacter.getPosX() - getPosX() < 200){
-                setPosX(mainCharacter.getPosX() - 200);
+            if (mainCharacter.getPosX() - getPosX() < 60){
+                setPosX(mainCharacter.getPosX() - 60);
             }
-            if (mainCharacter.getPosY() - getPosY() > 400){
-                setPosY(mainCharacter.getPosY() - 400);
+            if (mainCharacter.getPosY() - getPosY() > 530){
+                setPosY(mainCharacter.getPosY() - 530);
             }
-            else if (mainCharacter.getPosY() - getPosY() < 250){
-                setPosY(mainCharacter.getPosY() - 250);
+            else if (mainCharacter.getPosY() - getPosY() < 60){
+                setPosY(mainCharacter.getPosY() - 60);
             }
         }
     }

@@ -10,26 +10,21 @@ import java.awt.image.BufferedImage;
 public class BomberMan extends Character {
 
     public static int RUNSPEED = 3;
+    public static int ENCHANTED_RUNSPEED = 5;
 
-    private Animation leftAnimation, rightAnimation, upAnimation, downAnimation;
-
-    /**
-     * Hướng đặt bom
-     * đặt ở đuôi hoặc ở đầu (bắn đạn)
-     */
-
-    // Có thể không dùng, vì bom đặt ngay dưới hoạt ảnh nhân vật
+    private Animation leftAnimation, rightAnimation, upAnimation, downAnimation, dieAnimation;
 
     GameWorld gameWorld;
 
     public BomberMan(float x, float y, GameWorld gameWorld) {
 
-        super(x, y, 24, 32, gameWorld);
+        super(x, y, 34, 45, gameWorld);
         setTeamType(LEAGUE_TEAM);
         leftAnimation = CacheDataLoader.getInstance().getAnimation("left");
         rightAnimation = CacheDataLoader.getInstance().getAnimation("right");
         upAnimation = CacheDataLoader.getInstance().getAnimation("up");
         downAnimation = CacheDataLoader.getInstance().getAnimation("down");
+        dieAnimation = CacheDataLoader.getInstance().getAnimation("boomberdie");
     }
 
     @Override
@@ -48,18 +43,13 @@ public class BomberMan extends Character {
         }
     }
 
-    // Method nay o lop ParticularObj
-    /*
-    public Rectangle getBoundForCollisionWithMap(){
+    @Override
+    public void makeBomb() {
 
-        Rectangle bound = new Rectangle();
-        bound.x = (int) (getPosX() - (getWidth())/2);
-        bound.y = (int) (getPosY() - (getWidth())/2);
-        bound.width = (int) getWidth();
-        bound.height = (int) getHeight();
-        return bound;
+
     }
-    */
+
+
     @Override
     public void update() {
         super.update();
@@ -77,6 +67,10 @@ public class BomberMan extends Character {
     public void draw(Graphics2D g2) {
         switch (getState()){
             case ALIVE:
+                //BufferedImage startImage;
+                //startImage = downAnimation.getImame(0);
+                //FrameImage startFrame = new FrameImage();
+                //startFrame.draw(g2,(int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight());
                 if (getDirection() == DIR_DOWN && getSpeedY() > 0){
                     downAnimation.update(System.nanoTime());
                     downAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight(),g2);
@@ -90,7 +84,7 @@ public class BomberMan extends Character {
                 }
                 if (getDirection() == DIR_UP && getSpeedY() < 0){
                     upAnimation.update(System.nanoTime());
-                    upAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),24,32,g2);
+                    upAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight(),g2);
                 }
                 else if(getDirection() == DIR_UP && getSpeedY() == 0) {
                     BufferedImage currUpFrame;
@@ -101,7 +95,7 @@ public class BomberMan extends Character {
                 }
                 if (getDirection() == DIR_RIGHT && getSpeedX() > 0){
                     rightAnimation.update(System.nanoTime());
-                    rightAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),24,32,g2);
+                    rightAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight(),g2);
                 }
                 else if(getDirection() == DIR_RIGHT && getSpeedY() == 0){
                     BufferedImage currRightFrame;
@@ -112,7 +106,7 @@ public class BomberMan extends Character {
                 }
                 if (getDirection() == DIR_LEFT && getSpeedX() < 0){
                     leftAnimation.update(System.nanoTime());
-                    leftAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),24,32,g2);
+                    leftAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight(),g2);
                 }
                 else if(getDirection() == DIR_LEFT && getSpeedY() == 0) {
                     BufferedImage currLeftFrame;
@@ -121,8 +115,14 @@ public class BomberMan extends Character {
                     frameImage4.setImage(currLeftFrame);
                     frameImage4.draw(g2, (int) getPosX() - (int) getGameWorld().camera.getPosX(), (int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight());
                 }
+                break;
+            case DEATH:
+                dieAnimation.update(System.nanoTime());
+                dieAnimation.draw((int) getPosX() - (int) getGameWorld().camera.getPosX(),(int) getPosY() - (int) getGameWorld().camera.getPosY(),(int)getWidth(),(int)getHeight(),g2);
+                break;
+
         }
-        drawBoundCollisionWithMap(g2);
+        //drawBoundCollisionWithMap(g2);
     }
 
 

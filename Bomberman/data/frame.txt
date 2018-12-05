@@ -87,24 +87,24 @@ h 16
 
 boomberdie1
 image Bomberman/data/classic.png
-x 63
-y 31
-w 16
-h 18
+x 64
+y 32
+w 14
+h 16
 
 boomberdie2
 image Bomberman/data/classic.png
 x 79
-y 31
-w 16
-h 18
+y 32
+w 15
+h 16
 
 boomberdie3
 image Bomberman/data/classic.png
-x 95
-y 31
-w 18
-h 18
+x 96
+y 32
+w 16
+h 16
 
 normalballoonright1
 image Bomberman/data/classic.png

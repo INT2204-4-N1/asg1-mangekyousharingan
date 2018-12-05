@@ -16,7 +16,7 @@ public class Map extends GameObject{
     public Map(float x, float y, GameWorld gameWorld){
 
         super(x,y,gameWorld);
-        this.tileSize = 32;
+        this.tileSize = 48;
         map = CacheDataLoader.getInstance().getMap();
     }
 
@@ -32,27 +32,11 @@ public class Map extends GameObject{
         g2.setColor(Color.GRAY);
         for (int i = 0; i < CacheDataLoader.getInstance().get_height(); i++){
             for (int j = 0; j < CacheDataLoader.getInstance().get_width(); j++){
-                if (map[i][j].equals("#")){
-
-                    FrameImage wall = new FrameImage();
-                    wall = CacheDataLoader.getInstance().getFrameImage("wall");
-                    g2.drawImage(wall.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
-                }
-                if (map[i][j].equals("*")){
+                if (map[i][j].equals("*") || map[i][j].equals("f")){
 
                     FrameImage brick = new FrameImage();
                     brick = CacheDataLoader.getInstance().getFrameImage("brick");
                     g2.drawImage(brick.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
-                }
-                if(map[i][j].equals("x")){
-                    FrameImage portal = new FrameImage();
-                    portal = CacheDataLoader.getInstance().getFrameImage("portal");
-                    g2.drawImage(portal.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
-                }
-                if(map[i][j].equals(" ")){
-                    FrameImage grass = new FrameImage();
-                    grass = CacheDataLoader.getInstance().getFrameImage("grass");
-                    g2.drawImage(grass.getImage(),(int)getPosX() + j*tileSize - (int) camera.getPosX(),(int)getPosY() + i*tileSize - (int) camera.getPosY(), tileSize, tileSize,null );
                 }
             }
         }
@@ -68,15 +52,14 @@ public class Map extends GameObject{
         int posX2 = (rect.x + rect.width)/tileSize;
         posX2 += 2;
 
+        //int posY = (rect.y + rect.height)/tileSize;
         int posY = (rect.y + rect.height)/tileSize;
 
         if (posX1 < 0){
-
             posX1 = 0;
         }
 
         if (posX2 > CacheDataLoader.getInstance().get_width()){
-
             posX2 = CacheDataLoader.getInstance().get_width() - 1;
         }
 
@@ -84,10 +67,8 @@ public class Map extends GameObject{
             for (int x = posX1 ; x <= posX2 ; x++){
 
                 if (map[y][x].equals("#")){
-
                     Rectangle r = new Rectangle((int) getPosX() + x * tileSize,(int) getPosY()+ y * tileSize, tileSize, tileSize);
                     if (rect.intersects(r)){
-
                         return r;
                     }
                 }
@@ -110,19 +91,17 @@ public class Map extends GameObject{
 
             posX1 = 0;
         }
-        if (posX2 >= CacheDataLoader.getInstance().get_height()){
+        if (posX2 >= CacheDataLoader.getInstance().get_width()){
 
-            posX2 = CacheDataLoader.getInstance().get_height() - 1;
+            posX2 = CacheDataLoader.getInstance().get_width() - 1;
         }
 
         for (int y = posY; y >= 0; y--){
             for (int x = posX1; x <= posX2; x++){
 
                 if (map[y][x].equals("#")){
-
                     Rectangle r = new Rectangle((int) getPosX() + x*tileSize,(int) getPosY() + y*tileSize,tileSize,tileSize);
-                    if (rect.intersects(rect)){
-
+                    if (rect.intersects(r)){
                         return r;
                     }
                 }
@@ -139,7 +118,7 @@ public class Map extends GameObject{
         int posY2 = rect.y/tileSize;
         posY2 += 2;
 
-        int posX1 = (rect.x + rect.width)/tileSize;
+        int posX1 = (rect.x + rect.width/2)/tileSize;
         int posX2 = posX1 + 3;
         if (posX2 >= CacheDataLoader.getInstance().get_width()){
 
@@ -175,7 +154,7 @@ public class Map extends GameObject{
 
         int posY1 = rect.y/tileSize;
         posY1 -= 2;
-        int posY2 = (rect.y + rect.height)/tileSize;
+        int posY2 = rect.y/tileSize;
         posY2 += 2;
 
         int posX1 = (rect.x + rect.width)/tileSize;
@@ -198,18 +177,12 @@ public class Map extends GameObject{
                 if (map[y][x].equals("#")){
                     Rectangle r = new Rectangle((int) getPosX() + x*tileSize,(int) getPosY() + y*tileSize,tileSize,tileSize);
                     if (r.y < rect.y + rect.height - 1 && rect.intersects(r)){
-
                         return r;
                     }
 
                 }
             }
         }
-        return null;
-    }
-
-    public Rectangle haveCollisionWithBox(Rectangle rect){
-
         return null;
     }
 }

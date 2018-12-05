@@ -11,6 +11,7 @@ public abstract class Character extends ParticularObject{
     }
 
     public abstract void run();
+    public abstract void makeBomb();
 
     @Override
     public void update(){
@@ -39,14 +40,14 @@ public abstract class Character extends ParticularObject{
             if(getDirection() == DIR_UP &&
                     getGameWorld().map.impactWithUp(getBoundForCollisionWithMap())!=null){
 
-                //Rectangle rectUpWall = getGameWorld().map.impactWithUp(getBoundForCollisonWithMap());
-                //setPosY(rectUpWall.y + rectUpWall.height + getHeight()/2);
+                Rectangle rectUpWall = getGameWorld().map.impactWithUp(getBoundForCollisionWithMap());
+                setPosY(rectUpWall.y + rectUpWall.height + getHeight()/2);
                 System.out.println("Impact with up box");
             }
             if(getDirection() == DIR_DOWN &&
-                    getGameWorld().map.impactWithRight(getBoundForCollisionWithMap())!=null){
+                    getGameWorld().map.impactWithDown(getBoundForCollisionWithMap())!=null){
 
-                Rectangle rectDownWall = getGameWorld().map.impactWithRight(getBoundForCollisionWithMap());
+                Rectangle rectDownWall = getGameWorld().map.impactWithDown(getBoundForCollisionWithMap());
                 setPosY(rectDownWall.y - getHeight()/2 );
                 System.out.println("Impact with down box");
             }
